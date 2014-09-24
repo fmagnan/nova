@@ -1,33 +1,24 @@
 'use strict';
 
-/**
- * @ngdoc overview
- * @name novaApp
- * @description
- * # novaApp
- *
- * Main module of the application.
- */
-angular
-  .module('novaApp', [
+var modules = [
     'ngAnimate',
     'ngCookies',
     'ngResource',
     'ngRoute',
     'ngSanitize',
     'ngTouch'
-  ])
-  .config(function ($routeProvider) {
+];
+angular.module('novaApp', modules).config(function ($routeProvider) {
     $routeProvider
-      .when('/', {
-        templateUrl: 'views/main.html',
-        controller: 'MainCtrl'
-      })
-      .when('/about', {
-        templateUrl: 'views/about.html',
-        controller: 'AboutCtrl'
-      })
-      .otherwise({
-        redirectTo: '/'
-      });
-  });
+        .when('/', {
+            templateUrl: 'views/main.html',
+            controller: 'MainCtrl'
+        })
+        .when('/posts/:feedId', {
+            templateUrl: 'views/posts.html',
+            controller: 'PostsCtrl'
+        })
+        .otherwise({
+            redirectTo: '/'
+        });
+});

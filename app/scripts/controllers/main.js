@@ -1,17 +1,7 @@
 'use strict';
 
-/**
- * @ngdoc function
- * @name novaApp.controller:MainCtrl
- * @description
- * # MainCtrl
- * Controller of the novaApp
- */
-angular.module('novaApp')
-  .controller('MainCtrl', function ($scope) {
-    $scope.awesomeThings = [
-      'HTML5 Boilerplate',
-      'AngularJS',
-      'Karma'
-    ];
-  });
+angular.module('novaApp').controller('MainCtrl', function ($scope, $http) {
+    $http.get('http://galactus.local.guest.net/feeds').success(function (response) {
+        $scope.feeds = response['data'];
+    });
+});
