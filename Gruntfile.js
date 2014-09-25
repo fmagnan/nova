@@ -48,16 +48,6 @@ module.exports = function (grunt) {
                 files: ['<%= yeoman.app %>/styles/{,*/}*.css'],
                 tasks: ['newer:copy:styles', 'autoprefixer']
             },
-            grep: {
-                production: {
-                    files: {
-                        '.tmp/': ['scripts/app.js']
-                    },
-                    options: {
-                        pattern: 'dev' //your pattern that will be excluded from file
-                    }
-                }
-            },
             gruntfile: {
                 files: ['Gruntfile.js']
             },
@@ -287,6 +277,32 @@ module.exports = function (grunt) {
             }
         },
 
+        ngconstant: {
+            // Options for all targets
+            options: {
+                name: 'config',
+                constants: {
+                    apiEndPoint: ''
+                }
+            },
+            dev: {
+                options: {
+                    dest: '<%= yeoman.app %>/scripts/config.js'
+                },
+                constants: {
+                    apiEndPoint: 'http://galactus.local.guest.net/api'
+                }
+            },
+            prod: {
+                options: {
+                    dest: '<%= yeoman.app %>/scripts/config.js'
+                },
+                constants: {
+                    apiEndPoint: '/api'
+                }
+            }
+        },
+
         // ngmin tries to make the code safe for minification automatically by
         // using the Angular long form for dependency injection. It doesn't work on
         // things like resolve or inject so those have to be done manually.
@@ -376,6 +392,7 @@ module.exports = function (grunt) {
 
         grunt.task.run([
             'clean:server',
+            'ngconstant:dev',
             'wiredep',
             'concurrent:server',
             'autoprefixer',
@@ -399,6 +416,7 @@ module.exports = function (grunt) {
 
     grunt.registerTask('build', [
         'clean:dist',
+        'ngconstant:prod',
         'wiredep',
         'useminPrepare',
         'concurrent:dist',
