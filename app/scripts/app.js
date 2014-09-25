@@ -1,5 +1,10 @@
 'use strict';
 
+var setUpApiServerPath = function() {
+    return { apiRootPath: 'http://galactus.local.guest.net/api' }; //@grep dev
+    return { apiRootPath: '/api' }; //@grep production
+};
+
 var modules = [
     'ngAnimate',
     'ngCookies',
@@ -8,7 +13,9 @@ var modules = [
     'ngSanitize',
     'ngTouch'
 ];
-angular.module('novaApp', modules).config(function ($routeProvider) {
+var novaApp = angular.module('novaApp', modules);
+novaApp.factory('EnvironmentService', setUpApiServerPath);
+novaApp.config(function ($routeProvider) {
     $routeProvider
         .when('/', {
             templateUrl: 'views/main.html',
