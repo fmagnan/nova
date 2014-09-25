@@ -1,5 +1,5 @@
 angular.module('config', [])
 
-.constant('apiEndPoint', '/api')
+.constant('apiEndPoint', 'http://galactus.local.guest.net/api')
 
 ;

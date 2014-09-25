@@ -5,4 +5,7 @@ angular.module('novaApp').controller('PostsCtrl', function ($scope, $http, $rout
     $http.get(uri).success(function (response) {
         $scope.posts = response.data;
     });
+    $http.get(apiEndPoint + '/feeds').success(function (response) {
+        $scope.feeds = response.data;
+    });
 });
