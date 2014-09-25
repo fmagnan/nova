@@ -1,6 +1,6 @@
 'use strict';
 
-var modules = [
+var novaApp = angular.module('novaApp', [
     'config',
     'ngAnimate',
     'ngCookies',
@@ -8,8 +8,9 @@ var modules = [
     'ngRoute',
     'ngSanitize',
     'ngTouch'
-];
-angular.module('novaApp', modules).config(function ($routeProvider) {
+]);
+
+novaApp.config(function ($routeProvider) {
     $routeProvider
         .when('/posts/:feedId', {
             templateUrl: 'views/posts.html',
