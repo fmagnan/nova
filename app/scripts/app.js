@@ -12,11 +12,11 @@ var novaApp = angular.module('novaApp', [
 
 novaApp.config(function ($routeProvider) {
     $routeProvider
-        .when('/posts/:feedId', {
-            templateUrl: 'views/posts.html',
-            controller: 'PostsCtrl'
+        .when('/', {
+            templateUrl: 'views/main.html',
+            controller: 'MainCtrl'
         })
         .otherwise({
-            redirectTo: '/posts/1'
+            redirectTo: '/'
         });
 });

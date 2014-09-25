@@ -1,7 +1,7 @@
 'use strict';
 
-angular.module('novaApp').controller('PostsCtrl', function ($scope, $http, $routeParams, apiEndPoint) {
-    var uri = apiEndPoint + '/posts/' + $routeParams.feedId;
+angular.module('novaApp').controller('MainCtrl', function ($scope, $http, apiEndPoint) {
+    var uri = apiEndPoint + '/posts';
     $http.get(uri).success(function (response) {
         $scope.posts = response.data;
     });
