@@ -1,13 +1,8 @@
 'use strict';
 
 angular.module('novaApp').controller('MainCtrl', function ($scope, $http, apiEndPoint) {
-    $scope.generateRandomColor = function () {
-        var letters = '0123456789ABCDEF'.split('');
-        var color = '#';
-        for (var i = 0; i < 6; i++) {
-            color += letters[Math.floor(Math.random() * 16)];
-        }
-        return color;
+    $scope.generateColor = function (i) {
+        return 220 - 10 * i;
     };
 
     $scope.filters = {};
@@ -21,7 +16,7 @@ angular.module('novaApp').controller('MainCtrl', function ($scope, $http, apiEnd
         $scope.feeds = {};
         for (var i= 0 ; i < feeds.length; i++) {
             $scope.feeds[feeds[i].id] = feeds[i];
-            $scope.feeds[feeds[i].id]['color'] = $scope.generateRandomColor();
+            $scope.feeds[feeds[i].id]['color'] = $scope.generateColor(i);
         }
     });
 });
