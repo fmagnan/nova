@@ -2,6 +2,7 @@
 
 var novaApp = angular.module('novaApp', [
     'config',
+    'infinite-scroll',
     'ngAnimate',
     'ngCookies',
     'ngResource',
@@ -20,3 +21,4 @@ novaApp.config(function ($routeProvider) {
             redirectTo: '/'
         });
 });
+
