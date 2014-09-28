@@ -1,48 +1,57 @@
 'use strict';
 
-novaApp.factory('Foo', function($http, apiEndPoint) {
-    var Foo = function() {
+novaApp.factory('Pagination', function ($http, apiEndPoint) {
+    var Pagination = function () {
         this.items = [];
         this.busy = false;
-        this.offset = 0;
+        this.params = {"limit": 10, "offset": 0};
     };
 
-    Foo.prototype.next = function() {
+    Pagination.prototype.build_http_query_params = function (obj) {
+        var str = [];
+        for (var p in obj)
+            if (obj.hasOwnProperty(p)) {
+                str.push(encodeURIComponent(p) + "=" + encodeURIComponent(obj[p]));
+            }
+        return str.join("&");
+    };
+
+    Pagination.prototype.get = function (conditions, isResetNeeded) {
         if (this.busy) {
             return;
         }
         this.busy = true;
 
-        var url = apiEndPoint + "/posts?limit=10&offset=" + this.offset;
-        $http.get(url).success(function(response) {
+        if (true === isResetNeeded) {
+            this.items = [];
+            this.params.offset = 0;
+        }
+
+        if (typeof conditions !== 'undefined') {
+            for (var key in conditions) {
+                this.params[key] = conditions[key];
+            }
+        }
+
+        var url = apiEndPoint + "/posts?" + this.build_http_query_params(this.params);
+        $http.get(url).success(function (response) {
             for (var i = 0; i < response.data.length; i++) {
                 this.items.push(response.data[i]);
             }
-            this.offset = this.items.length;
+            this.params.offset = this.items.length;
             this.busy = false;
         }.bind(this));
     };
 
-    return Foo;
+    return Pagination;
 });
 
-novaApp.controller('MainCtrl', function ($scope, $http, apiEndPoint, Foo) {
+novaApp.controller('MainCtrl', function ($scope, $http, apiEndPoint, Pagination) {
 
-    $scope.reddit = new Foo();
-
-    $scope.generateColor = function (i) {
-        return 220 - 10 * i;
-    };
-
-    $scope.filters = {};
+    $scope.postsPagination = new Pagination();
 
     $http.get(apiEndPoint + '/feeds').success(function (response) {
-        var feeds = response.data;
-        $scope.feeds = {};
-        for (var i= 0 ; i < feeds.length; i++) {
-            $scope.feeds[feeds[i].id] = feeds[i];
-            $scope.feeds[feeds[i].id]['color'] = $scope.generateColor(i);
-        }
+        $scope.feeds = response.data;
     });
 });
 
