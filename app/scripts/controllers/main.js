@@ -1,44 +1,40 @@
 'use strict';
 
-// Reddit constructor function to encapsulate HTTP and pagination logic
-novaApp.factory('Reddit', function($http) {
-    var Reddit = function() {
+novaApp.factory('Foo', function($http, apiEndPoint) {
+    var Foo = function() {
         this.items = [];
         this.busy = false;
-        this.after = '';
+        this.offset = 0;
     };
 
-    Reddit.prototype.next = function() {
-        if (this.busy) return;
+    Foo.prototype.next = function() {
+        if (this.busy) {
+            return;
+        }
         this.busy = true;
 
-        var url = "http://galactus.local.guest.net/api/posts?limit=10&offset=" + this.after;
+        var url = apiEndPoint + "/posts?limit=10&offset=" + this.offset;
         $http.get(url).success(function(response) {
-            var posts = response.data;
-            for (var i = 0; i < posts.length; i++) {
-                this.items.push(posts[i]);
+            for (var i = 0; i < response.data.length; i++) {
+                this.items.push(response.data[i]);
             }
-            this.after = this.items.length;
+            this.offset = this.items.length;
             this.busy = false;
         }.bind(this));
     };
 
-    return Reddit;
+    return Foo;
 });
 
-novaApp.controller('MainCtrl', function ($scope, $http, apiEndPoint, Reddit) {
+novaApp.controller('MainCtrl', function ($scope, $http, apiEndPoint, Foo) {
 
-    $scope.reddit = new Reddit();
+    $scope.reddit = new Foo();
 
     $scope.generateColor = function (i) {
         return 220 - 10 * i;
     };
 
     $scope.filters = {};
-
-    /*$http.get(apiEndPoint + '/posts?limit=10').success(function (response) {
-        $scope.posts = response.data;
-    });*/
 
     $http.get(apiEndPoint + '/feeds').success(function (response) {
         var feeds = response.data;
