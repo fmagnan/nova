@@ -8,7 +8,7 @@ novaApp.factory('Reddit', function($http) {
         this.after = '';
     };
 
-    Reddit.prototype.nextPage = function() {
+    Reddit.prototype.next = function() {
         if (this.busy) return;
         this.busy = true;
 

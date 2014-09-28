@@ -1,22 +1,22 @@
 <div class="col-xs-1"></div>
 
 <div class="col-xs-8">
-    <div infinite-scroll='reddit.nextPage()' infinite-scroll-disabled='reddit.busy' infinite-scroll-distance='1'>
-        <div ng-repeat="post in reddit.items | filter:filters"
-             style="background-color: rgb({{feeds[post.feedId].color}},{{feeds[post.feedId].color}},{{feeds[post.feedId].color}})"
+    <div infinite-scroll='reddit.next()' infinite-scroll-disabled='reddit.busy' infinite-scroll-distance='1'>
+        <div ng-repeat="item in reddit.items | filter:filters"
+             style="background-color: rgb({{feeds[item.feedId].color}},{{feeds[item.feedId].color}},{{feeds[item.feedId].color}})"
              class="site-post">
-            <h2>{{feeds[post.feedId].name}} - {{post.creationDate}} - {{post.title}}</h2>
+            <h2>{{feeds[item.feedId].name}} - {{item.creationDate}} - {{item.title}}</h2>
 
-            <div ng-switch on="post">
-                <p ng-switch-when="post.encoded !== ''">
-                    {{post.encoded}}
+            <div ng-switch on="item">
+                <p ng-switch-when="item.encoded !== ''">
+                    {{item.encoded}}
                 </p>
 
                 <div ng-switch-default>
-                    {{post.description}}
+                    {{item.description}}
                 </div>
                 <p>
-                    lire la <a href="{{post.url}}" target="_blank">suite</a>...
+                    lire la <a href="{{item.url}}" target="_blank">suite</a>...
                 </p>
             </div>
         </div>
