@@ -13,7 +13,8 @@
     "angular-touch": "1.2.16",
     "angular-route": "1.2.16",
     "font-awesome": "~4.2.0",
-    "ngInfiniteScroll": "~1.1.2"
+    "ngInfiniteScroll": "~1.1.2",
+    "bootstrap-material-design": "*"
   },
   "devDependencies": {
     "angular-mocks": "1.2.16",

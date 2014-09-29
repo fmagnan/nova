@@ -3,11 +3,12 @@
 <div class="col-xs-8">
     <div infinite-scroll='postsPagination.get()' infinite-scroll-disabled='postsPagination.isLoading'
          infinite-scroll-distance='1'>
-        <div ng-repeat="item in postsPagination.items" class="site-post">
-            <h3>[{{item.creationDate}}] - {{item.title}}</h3>
+        <div ng-repeat="item in postsPagination.items" class="well infobox">
+            <h3>{{item.title}}</h3>
 
             <p>
-                <span class="badge">{{item.feedName}}</span>
+                <span class="badge badge-date">{{item.creationDate}}</span>
+                <span class="badge badge-feed">{{item.feedName}}</span>
             </p>
 
             <div ng-switch on="item">
@@ -31,10 +32,11 @@
 </div>
 
 <div class="col-xs-3">
-    <ul ng-repeat="(feedId, feed) in feeds">
-        <li class="glyphicon glyphicon-tower">
-            <a ng-click="postsPagination.get({feedId: feed.id}, true)">{{feed.name}}</a>
-        </li>
-    </ul>
+    <div class="feeds-cloud">
+    <span ng-repeat="(feedId, feed) in feeds" class="badge badge-feed clickable"
+          ng-click="postsPagination.get({feedId: feed.id}, true)">
+        {{feed.name}}
+    </span>
+    </div>
 </div>
 
