@@ -4,7 +4,11 @@
     <div infinite-scroll='postsPagination.get()' infinite-scroll-disabled='postsPagination.isLoading'
          infinite-scroll-distance='1'>
         <div ng-repeat="item in postsPagination.items" class="site-post">
-            <h2>{{item.feedName}} {{item.creationDate}} - {{item.title}}</h2>
+            <h3>[{{item.creationDate}}] - {{item.title}}</h3>
+
+            <p>
+                <span class="badge">{{item.feedName}}</span>
+            </p>
 
             <div ng-switch on="item">
                 <p ng-switch-when="item.encoded !== ''">

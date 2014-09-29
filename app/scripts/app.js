@@ -21,4 +21,3 @@ novaApp.config(function ($routeProvider) {
             redirectTo: '/'
         });
 });
-
