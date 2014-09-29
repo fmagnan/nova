@@ -12,15 +12,16 @@
 
             <div ng-switch on="item">
                 <p ng-switch-when="item.encoded !== ''">
-                    {{item.encoded}}
+                    <span ng-bind-html="item.encoded"></span>
                 </p>
 
                 <div ng-switch-default>
-                    {{item.description}}
+                    <span ng-bind-html="item.description"></span>
+
+                    <p>
+                        lire la <a href="{{item.url}}" target="_blank">suite</a>...
+                    </p>
                 </div>
-                <p>
-                    lire la <a href="{{item.url}}" target="_blank">suite</a>...
-                </p>
             </div>
         </div>
         <div ng-show="postsPagination.isLoading && postsPagination.hasNext" class="loader">
