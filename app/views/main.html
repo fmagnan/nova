@@ -11,24 +11,16 @@
                 <span class="badge badge-feed">{{item.feedName}}</span>
             </p>
 
-            <div ng-switch on="item">
-                <p ng-switch-when="item.encoded !== ''">
-                    <span ng-bind-html="item.encoded"></span>
-                </p>
+            <p ng-bind-html="item.content"></p>
 
-                <div ng-switch-default>
-                    <span ng-bind-html="item.description"></span>
-
-                    <p>
-                        lire la <a href="{{item.url}}" target="_blank">suite</a>...
-                    </p>
-                </div>
-            </div>
-        </div>
-        <div ng-show="postsPagination.isLoading && postsPagination.hasNext" class="loader">
-            <img src="/images/loader.gif" height="48" width="48"/>
+            <p>
+                lire la <a href="{{item.url}}" target="_blank">suite</a>...
+            </p>
         </div>
     </div>
+</div>
+<div ng-show="postsPagination.isLoading && postsPagination.hasNext" class="loader">
+    <img src="/images/loader.gif" height="48" width="48"/>
 </div>
 
 <div class="col-xs-3">
@@ -39,4 +31,3 @@
     </span>
     </div>
 </div>
-
