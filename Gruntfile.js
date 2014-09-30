@@ -287,7 +287,7 @@ module.exports = function (grunt) {
             },
             dev: {
                 options: {
-                    dest: '<%= yeoman.app %>/scripts/config.js'
+                    dest: '<%= yeoman.app %>/scripts/services/config.js'
                 },
                 constants: {
                     apiEndPoint: 'http://galactus.local.guest.net/api'
@@ -295,7 +295,7 @@ module.exports = function (grunt) {
             },
             prod: {
                 options: {
-                    dest: '<%= yeoman.app %>/scripts/config.js'
+                    dest: '<%= yeoman.app %>/scripts/services/config.js'
                 },
                 constants: {
                     apiEndPoint: '/api'
