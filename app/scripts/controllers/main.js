@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('novaApp').controller('MainCtrl', function ($scope, $http, apiEndPoint, Pagination) {
+angular.module('nova').controller('MainCtrl', function ($scope, $http, apiEndPoint, Pagination) {
 
     $scope.postsPagination = new Pagination();
 

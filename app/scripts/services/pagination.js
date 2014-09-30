@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('novaApp').factory('Pagination', function ($http, apiEndPoint) {
+angular.module('nova').factory('Pagination', function ($http, apiEndPoint) {
     var Pagination = function () {
         this.items = [];
         this.isLoading = false;

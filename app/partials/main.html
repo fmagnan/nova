@@ -19,9 +19,8 @@
         </div>
     </div>
 </div>
-<div ng-show="postsPagination.isLoading && postsPagination.hasNext" class="loader">
-    <img src="/images/loader.gif" height="48" width="48"/>
-</div>
+
+<div class="spinner" ng-show="postsPagination.isLoading && postsPagination.hasNext"></div>
 
 <div class="col-xs-3">
     <div class="feeds-cloud">
