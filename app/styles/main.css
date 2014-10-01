@@ -53,8 +53,11 @@ body {
     margin: 10px 0;
 }
 
-.nova-close {
-    float: right;
+.nova-close, .nova-more {
     color: black;
     cursor: pointer;
+}
+.nova-close, .nova-more {
+    position:relative;
+    left:96%;
 }
