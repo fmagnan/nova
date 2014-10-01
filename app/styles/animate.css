@@ -1,0 +1,9 @@
+.site-post.ng-leave {
+    -webkit-animation: fadeOutUp 0.5s;
+    animation: fadeOutUp 0.5s;
+}
+
+.site-post.ng-enter {
+    -webkit-animation: fadeInDown 0.5s;
+    animation: fadeInDown 0.5s;
+}

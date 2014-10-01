@@ -7,4 +7,8 @@ angular.module('nova').controller('MainCtrl', function ($scope, $http, apiEndPoi
     $http.get(apiEndPoint + '/feeds').success(function (response) {
         $scope.feeds = response.data;
     });
+
+    $scope.removePost = function(position) {
+        $scope.postsPagination.items.splice(position, 1);
+    };
 });
