@@ -32,10 +32,13 @@
 </div>
 
 <div class="col-xs-3">
-    <span ng-click="removeFeedFilter()">supprimer les filtres</span>
+    <span ng-click="removeFeedFilter()" class="badge badge-feed clickable reset-filters">
+        <i class="fa fa-close"></i>
+        supprimer les filtres
+    </span>
     <div class="feeds-cloud">
-        <span ng-repeat="(feedId, feed) in feeds" class="badge badge-feed clickable"
-                ng-click="selectFeed(feedId)" ng-class="{'selected': feedIdFilter == feedId}">
+        <span ng-repeat="feed in feeds" class="badge badge-feed clickable"
+                ng-click="selectFeed(feed.id)" ng-class="{'selected': feedIdFilter == feed.id}">
             {{feed.name}}
         </span>
     </div>

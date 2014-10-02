@@ -8,8 +8,8 @@ angular.module('nova').filter('includesInFeed', function () {
         var filtered = [];
         for (var i = 0; i < items.length; i++) {
             var item = items[i];
-            console.log(feedIdFilter+ ' vs ' + item.feedId );
-            if (item.feedId === feedIdFilter) {
+            console.log(feedIdFilter+ ' vs ' + item.feedId + ' / ' + item.title );
+            if (item.feedId == feedIdFilter) {
                 filtered.push(item);
             }
         }

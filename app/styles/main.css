@@ -44,8 +44,14 @@ body {
     background-color: darkolivegreen;
 }
 
+.badge-feed.reset-filters {
+    background-color: darkred;
+    margin-bottom:10px;
+}
+
 .badge-feed.selected {
-    background-color: orange;
+    color: darkolivegreen;
+    background-color: white;
 }
 
 .clickable {
