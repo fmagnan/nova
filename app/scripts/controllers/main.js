@@ -8,6 +8,7 @@ angular.module('nova').filter('includesInFeed', function () {
         var filtered = [];
         for (var i = 0; i < items.length; i++) {
             var item = items[i];
+            console.log(feedIdFilter+ ' vs ' + item.feedId );
             if (item.feedId === feedIdFilter) {
                 filtered.push(item);
             }
@@ -33,13 +34,12 @@ angular.module('nova').controller('MainCtrl', function ($scope, $http, apiEndPoi
         return $scope.postsPagination.get();
     };
 
-    $scope.selectFeed = function (feedId) {
+    $scope.selectFeed = function(feedId) {
         $scope.feedIdFilter = feedId;
-        /*var i = $scope.postsPagination.items.length;
-         while (i--) {
-         if ($scope.postsPagination.items[i]['feedId'] != feedId) {
-         $scope.postsPagination.items.splice(i, 1);
-         }
-         }*/
     };
+
+    $scope.removeFeedFilter = function() {
+        $scope.feedIdFilter = undefined;
+    };
+
 });
