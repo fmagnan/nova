@@ -11,7 +11,7 @@ body {
     background: linear-gradient(135deg, rgba(220, 235, 162, 1) 0%, rgba(64, 75, 22, 1) 100%);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#dceba2', endColorstr='#404b16', GradientType=1);
 
-    min-height:1200px;
+    min-height: 1200px;
 
     /*background-image: url(/images/planet_JDR_2d20.jpg);
     background-repeat: no-repeat;
@@ -31,8 +31,13 @@ body {
     margin-bottom: 15px;
 }
 
-.feeds-cloud {
+.side-bar {
     position: fixed;
+}
+
+.feeds-cloud {
+    margin-top:15px;
+    margin-bottom:15px;
 }
 
 .badge-date {
@@ -46,12 +51,12 @@ body {
 
 .badge-feed.reset-filters {
     background-color: darkred;
-    margin-bottom:10px;
 }
 
 .badge-feed.selected {
     color: darkolivegreen;
     background-color: white;
+    cursor: default;
 }
 
 .clickable {
@@ -67,7 +72,8 @@ body {
     color: black;
     cursor: pointer;
 }
+
 .nova-close, .nova-more {
-    position:relative;
-    left:96%;
+    position: relative;
+    left: 96%;
 }

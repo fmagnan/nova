@@ -3,7 +3,8 @@
 <div class="col-xs-8">
     <div infinite-scroll='getPosts()' infinite-scroll-disabled='postsPagination.isLoading'
          infinite-scroll-distance='1'>
-        <div ng-repeat="(itemIndex, item) in postsPagination.items | includesInFeed:feedIdFilter" class="well infobox site-post">
+        <div ng-repeat="(itemIndex, item) in postsPagination.items | includesInFeed:feedIdFilter"
+             class="well infobox site-post">
             <a ng-click="removePost(itemIndex)" class="nova-close">
                 <span class="fa-stack fa-lg">
                     <i class="fa fa-circle fa-stack-2x"></i>
@@ -32,14 +33,32 @@
 </div>
 
 <div class="col-xs-3">
-    <span ng-click="removeFeedFilter()" class="badge badge-feed clickable reset-filters">
-        <i class="fa fa-close"></i>
-        supprimer les filtres
-    </span>
-    <div class="feeds-cloud">
-        <span ng-repeat="feed in feeds" class="badge badge-feed clickable"
-                ng-click="selectFeed(feed.id)" ng-class="{'selected': feedIdFilter == feed.id}">
-            {{feed.name}}
-        </span>
+    <div class="side-bar">
+        <div>
+            <span ng-click="removeFeedFilter()" class="badge badge-feed clickable reset-filters">
+                <i class="fa fa-close"></i>
+                supprimer les filtres
+            </span>
+        </div>
+        <div class="feeds-cloud">
+            <span ng-repeat="feed in feeds" class="badge badge-feed clickable"
+                  ng-click="selectFeed(feed.id)" ng-class="{'selected': feedIdFilter == feed.id}">
+                {{feed.name}}
+            </span>
+        </div>
+        <div class="social-widgets">
+            <a href="https://twitter.com/share" class="twitter-share-button" data-url="http://planet.jeuxderoles.net"
+               data-text="Avec le planet, j'ai ma dose quotidienne de jeux de rôles !">Tweet</a>
+            <script>!function (d, s, id) {
+                var js, fjs = d.getElementsByTagName(s)[0], p = /^http:/.test(d.location) ? 'http' : 'https';
+                if (!d.getElementById(id)) {
+                    js = d.createElement(s);
+                    js.id = id;
+                    js.src = p + '://platform.twitter.com/widgets.js';
+                    fjs.parentNode.insertBefore(js, fjs);
+                }
+            }(document, 'script', 'twitter-wjs');</script>
+        </div>
     </div>
 </div>
+
