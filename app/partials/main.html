@@ -1,7 +1,7 @@
 <div class="col-xs-1"></div>
 
 <div class="col-xs-8">
-    <div infinite-scroll='postsPagination.get()' infinite-scroll-disabled='postsPagination.isLoading'
+    <div infinite-scroll='getPosts() | feedIdFilter' infinite-scroll-disabled='postsPagination.isLoading'
          infinite-scroll-distance='1'>
         <div ng-repeat="(itemIndex, item) in postsPagination.items" class="well infobox site-post">
             <a ng-click="removePost(itemIndex)" class="nova-close">
@@ -34,7 +34,7 @@
 <div class="col-xs-3">
     <div class="feeds-cloud">
         <span ng-repeat="(feedId, feed) in feeds" class="badge badge-feed clickable"
-              ng-click="postsPagination.get({feedId: feed.id}, true)">
+                ng-click="selectFeed(feedId)" ng-class="{'selected': feedIdFilter == feedId}">
             {{feed.name}}
         </span>
     </div>
