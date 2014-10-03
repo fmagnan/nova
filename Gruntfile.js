@@ -293,7 +293,7 @@ module.exports = function (grunt) {
             },
             dev: {
                 options: {
-                    dest: '<%= yeoman.app %>/scripts/services/config.js'
+                    dest: '<%= yeoman.app %>/scripts/inc/config.js'
                 },
                 constants: {
                     settings: {
