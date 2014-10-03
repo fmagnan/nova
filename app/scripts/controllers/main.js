@@ -1,20 +1,19 @@
 'use strict';
 
-angular.module('nova').filter('includesInFeed', function () {
-    return function (items, feedIdFilter) {
-        if (typeof feedIdFilter === 'undefined') {
+angular.module('nova').filter('filtersByFeeds', function () {
+    return function (items, selectedFeeds) {
+        if (typeof selectedFeeds === 'undefined') {
             return items;
         }
         var filtered = [];
         for (var i = 0; i < items.length; i++) {
             var item = items[i];
-            console.log(feedIdFilter+ ' vs ' + item.feedId + ' / ' + item.title );
-            if (item.feedId == feedIdFilter) {
+            if (typeof selectedFeeds[item.feedId] === 'undefined') {
                 filtered.push(item);
             }
         }
         return filtered;
-    }
+    };
 });
 
 angular.module('nova').controller('MainCtrl', function ($scope, $http, apiEndPoint, Pagination) {
@@ -29,17 +28,28 @@ angular.module('nova').controller('MainCtrl', function ($scope, $http, apiEndPoi
         $scope.postsPagination.items.splice(position, 1);
     };
 
-    $scope.getPosts = function () {
-        console.log('get posts');
-        return $scope.postsPagination.get();
+    $scope.toggleFeed = function(feedId) {
+        if (typeof $scope.selectedFeeds === 'undefined') {
+            $scope.selectedFeeds = [];
+            $scope.selectedFeeds[feedId] = feedId;
+        } else {
+            if (typeof $scope.selectedFeeds[feedId] === 'undefined') {
+                $scope.selectedFeeds[feedId] = feedId;
+            } else {
+                $scope.selectedFeeds.splice(feedId,1);
+            }
+        }
     };
 
-    $scope.selectFeed = function(feedId) {
-        $scope.feedIdFilter = feedId;
+    $scope.resetFiltersOnFeeds = function() {
+        $scope.selectedFeeds = undefined;
     };
 
-    $scope.removeFeedFilter = function() {
-        $scope.feedIdFilter = undefined;
+    $scope.isFeedSelected = function(feedId) {
+        if (typeof $scope.selectedFeeds === 'undefined') {
+            return true;
+        }
+        return typeof $scope.selectedFeeds[feedId] === 'undefined';
     };
 
 });

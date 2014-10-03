@@ -1,7 +1,6 @@
 'use strict';
 
-var nova = angular.module('nova', [
-    'config',
+angular.module('nova', [
     'infinite-scroll',
     'ngAnimate',
     'ngCookies',
@@ -11,7 +10,7 @@ var nova = angular.module('nova', [
     'ngTouch'
 ]);
 
-nova.config(function ($routeProvider) {
+angular.module('nova').config(function ($routeProvider) {
     $routeProvider
         .when('/', {
             templateUrl: 'partials/main.html',

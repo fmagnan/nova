@@ -1,9 +1,9 @@
 <div class="col-xs-1"></div>
 
 <div class="col-xs-8">
-    <div infinite-scroll='getPosts()' infinite-scroll-disabled='postsPagination.isLoading'
+    <div infinite-scroll='postsPagination.get()' infinite-scroll-disabled='postsPagination.isLoading'
          infinite-scroll-distance='1'>
-        <div ng-repeat="(itemIndex, item) in postsPagination.items | includesInFeed:feedIdFilter"
+        <div ng-repeat="(itemIndex, item) in postsPagination.items | filtersByFeeds:selectedFeeds"
              class="well infobox site-post">
             <a ng-click="removePost(itemIndex)" class="nova-close">
                 <span class="fa-stack fa-lg">
@@ -35,14 +35,14 @@
 <div class="col-xs-3">
     <div class="side-bar">
         <div>
-            <span ng-click="removeFeedFilter()" class="badge badge-feed clickable reset-filters">
+            <span ng-click="resetFiltersOnFeeds()" class="badge badge-feed badge-alert clickable reset-filters">
                 <i class="fa fa-close"></i>
                 supprimer les filtres
             </span>
         </div>
         <div class="feeds-cloud">
             <span ng-repeat="feed in feeds" class="badge badge-feed clickable"
-                  ng-click="selectFeed(feed.id)" ng-class="{'selected': feedIdFilter == feed.id}">
+                  ng-click="toggleFeed(feed.id)" ng-class="{'selected': isFeedSelected(feed.id)}">
                 {{feed.name}}
             </span>
         </div>

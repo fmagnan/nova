@@ -280,7 +280,7 @@ module.exports = function (grunt) {
         ngconstant: {
             // Options for all targets
             options: {
-                name: 'config',
+                name: 'nova',
                 constants: {
                     apiEndPoint: ''
                 }
