@@ -11,6 +11,10 @@ angular.module('nova', [
     'ngTouch'
 ]);
 
+angular.module('nova').controller('NovaController', function ($scope, settings) {
+    $scope.settings = settings;
+});
+
 angular.module('nova').config(function ($routeProvider) {
     $routeProvider
         .when('/', {

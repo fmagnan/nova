@@ -39,8 +39,6 @@ angular.module('nova').controller('MainCtrl', function ($scope, $http, settings,
         return $scope.selectedFeeds.indexOf(feedId) === -1;
     };
 
-    $scope.settings = settings;
-
     $scope.resetFiltersOnFeeds();
 
     $scope.postsPagination = new Pagination();
