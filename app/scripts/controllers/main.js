@@ -18,6 +18,9 @@ angular.module('nova').filter('filtersByFeeds', function () {
 
 angular.module('nova').controller('MainCtrl', function ($scope, $http, apiEndPoint, Pagination) {
 
+    $scope.title = 'Planet';
+    $scope.googleAnalyticsIdentifier = 'UA-27208964-20';
+
     $scope.postsPagination = new Pagination();
 
     $http.get(apiEndPoint + '/feeds').success(function (response) {

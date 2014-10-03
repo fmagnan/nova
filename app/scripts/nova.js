@@ -1,6 +1,7 @@
 'use strict';
 
 angular.module('nova', [
+    'config',
     'infinite-scroll',
     'ngAnimate',
     'ngCookies',
