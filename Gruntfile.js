@@ -287,14 +287,12 @@ module.exports = function (grunt) {
             // Options for all targets
             options: {
                 name: 'config',
+                dest: '<%= yeoman.app %>/scripts/inc/config.js',
                 constants: {
                     settings: grunt.file.readJSON(appConfig.app + '/bundles/' + bundle + '/settings.json')
                 }
             },
             dev: {
-                options: {
-                    dest: '<%= yeoman.app %>/scripts/inc/config.js'
-                },
                 constants: {
                     settings: {
                         apiEndPoint: 'http://galactus.local.guest.net/api',
@@ -303,9 +301,6 @@ module.exports = function (grunt) {
                 }
             },
             prod: {
-                options: {
-                    dest: '<%= yeoman.app %>/scripts/services/config.js'
-                },
                 constants: {
                     settings: {
                         apiEndPoint: '/api',

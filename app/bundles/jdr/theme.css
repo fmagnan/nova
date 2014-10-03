@@ -23,16 +23,3 @@ body {
 .badge-date {
     background-color: darkseagreen;
 }
-
-.badge-feed {
-    background-color: darkolivegreen;
-}
-
-.badge-feed.reset-filters {
-    background-color: darkred;
-}
-
-.badge-feed.selected {
-    color: darkolivegreen;
-    background-color: white;
-}
