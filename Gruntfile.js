@@ -21,6 +21,8 @@ module.exports = function (grunt) {
         dist: 'dist'
     };
 
+    var bundle = grunt.option('bundle') || 'bd';
+
     // Define the configuration for all the tasks
     grunt.initConfig({
 
@@ -60,6 +62,10 @@ module.exports = function (grunt) {
                     '.tmp/styles/{,*/}*.css',
                     '<%= yeoman.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
                 ]
+            },
+            settings: {
+                files: ['Gruntfile.js'],
+                tasks: ['ngconstant:dev']
             }
         },
 
@@ -282,7 +288,7 @@ module.exports = function (grunt) {
             options: {
                 name: 'config',
                 constants: {
-                    apiEndPoint: ''
+                    settings: grunt.file.readJSON(appConfig.app + '/bundles/' + bundle + '/settings.json')
                 }
             },
             dev: {
@@ -290,7 +296,9 @@ module.exports = function (grunt) {
                     dest: '<%= yeoman.app %>/scripts/services/config.js'
                 },
                 constants: {
-                    apiEndPoint: 'http://galactus.local.guest.net/api'
+                    settings: {
+                        apiEndPoint: 'http://galactus.local.guest.net/api'
+                    }
                 }
             },
             prod: {
@@ -298,7 +306,9 @@ module.exports = function (grunt) {
                     dest: '<%= yeoman.app %>/scripts/services/config.js'
                 },
                 constants: {
-                    apiEndPoint: '/api'
+                    settings: {
+                        apiEndPoint: '/api'
+                    }
                 }
             }
         },
@@ -383,7 +393,6 @@ module.exports = function (grunt) {
             }
         }
     });
-
 
     grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
         if (target === 'dist') {

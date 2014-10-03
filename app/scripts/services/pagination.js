@@ -1,6 +1,6 @@
 'use strict';
 
-angular.module('nova').factory('Pagination', function ($http, apiEndPoint) {
+angular.module('nova').factory('Pagination', function ($http, settings) {
     var Pagination = function () {
         this.items = [];
         this.isLoading = false;
@@ -14,7 +14,7 @@ angular.module('nova').factory('Pagination', function ($http, apiEndPoint) {
         }
         this.isLoading = true;
 
-        var url = apiEndPoint + '/posts?limit=10&offset=' + this.offset;
+        var url = settings.apiEndPoint + '/posts?limit=10&offset=' + this.offset;
         $http.get(url).success(function (response) {
             if (0 === response.data.length) {
                 this.isLoading = true;

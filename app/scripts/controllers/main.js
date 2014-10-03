@@ -16,7 +16,7 @@ angular.module('nova').filter('filtersByFeeds', function () {
     };
 });
 
-angular.module('nova').controller('MainCtrl', function ($scope, $http, apiEndPoint, Pagination) {
+angular.module('nova').controller('MainCtrl', function ($scope, $http, settings, Pagination) {
 
     $scope.removePost = function (position) {
         $scope.postsPagination.items.splice(position, 1);
@@ -39,14 +39,13 @@ angular.module('nova').controller('MainCtrl', function ($scope, $http, apiEndPoi
         return $scope.selectedFeeds.indexOf(feedId) === -1;
     };
 
-    $scope.title = 'Planet';
-    $scope.googleAnalyticsIdentifier = 'UA-27208964-20';
+    $scope.settings = settings;
 
     $scope.resetFiltersOnFeeds();
 
     $scope.postsPagination = new Pagination();
 
-    $http.get(apiEndPoint + '/feeds').success(function (response) {
+    $http.get(settings.apiEndPoint + '/feeds').success(function (response) {
         $scope.feeds = response.data;
     });
 
