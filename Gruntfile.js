@@ -297,7 +297,8 @@ module.exports = function (grunt) {
                 },
                 constants: {
                     settings: {
-                        apiEndPoint: 'http://galactus.local.guest.net/api'
+                        apiEndPoint: 'http://galactus.local.guest.net/api',
+                        bundle: bundle
                     }
                 }
             },
@@ -307,7 +308,8 @@ module.exports = function (grunt) {
                 },
                 constants: {
                     settings: {
-                        apiEndPoint: '/api'
+                        apiEndPoint: '/api',
+                        bundle: bundle
                     }
                 }
             }
