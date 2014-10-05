@@ -424,6 +424,10 @@ module.exports = function (grunt) {
         }
     });
 
+    grunt.registerTask('theme', function () {
+        grunt.file.write('app/styles/theme.scss', '@import "../bundles/' + bundle + '/theme.scss";');
+    });
+
     grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {
         if (target === 'dist') {
             return grunt.task.run(['build', 'connect:dist:keepalive']);
@@ -431,6 +435,7 @@ module.exports = function (grunt) {
 
         grunt.task.run([
             'clean:server',
+            'theme',
             'ngconstant:dev',
             'wiredep',
             'concurrent:server',
@@ -452,6 +457,7 @@ module.exports = function (grunt) {
         'clean:dist',
         'ngconstant:prod',
         'wiredep',
+        'theme',
         'useminPrepare',
         'concurrent:dist',
         'autoprefixer',
