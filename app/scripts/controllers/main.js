@@ -17,9 +17,12 @@ angular.module('nova').filter('filtersByFeeds', function () {
 });
 
 angular.module('nova').controller('MainCtrl', function ($scope, $http, settings, Pagination) {
-
-    $scope.removePost = function (position) {
-        $scope.postsPagination.items.splice(position, 1);
+    $scope.removePost = function (id) {
+        for (var i=0; i<$scope.postsPagination.items.length; i++) {
+            if ($scope.postsPagination.items[i].id == id) {
+                return $scope.postsPagination.items.splice(i, 1);
+            }
+        }
     };
 
     $scope.toggleFeed = function (feedId) {

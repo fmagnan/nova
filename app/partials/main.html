@@ -14,7 +14,7 @@
              infinite-scroll-distance='1'>
             <div ng-repeat="(itemIndex, item) in postsPagination.items | filtersByFeeds:selectedFeeds"
                  class="well infobox site-post">
-                <a ng-click="removePost(itemIndex)" class="nova-close">
+                <a ng-click="removePost(item.id)" class="nova-close">
                 <span class="fa-stack fa-lg">
                     <i class="fa fa-circle fa-stack-2x"></i>
                     <i class="fa fa-close fa-stack-1x fa-inverse"></i>
