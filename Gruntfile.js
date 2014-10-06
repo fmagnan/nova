@@ -21,7 +21,7 @@ module.exports = function (grunt) {
         dist: 'dist'
     };
 
-    var bundle = grunt.option('bundle') || 'bd';
+    var website = grunt.option('website') || 'default';
 
     // Define the configuration for all the tasks
     grunt.initConfig({
@@ -47,7 +47,7 @@ module.exports = function (grunt) {
                 tasks: ['newer:jshint:test', 'karma']
             },
             compass: {
-                files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}'],
+                files: ['<%= yeoman.app %>/styles/{,*/}*.{scss,sass}', '<%= yeoman.app %>/websites/' + website + '/theme.scss'],
                 tasks: ['compass:server', 'autoprefixer']
             },
             gruntfile: {
@@ -322,14 +322,14 @@ module.exports = function (grunt) {
                 name: 'config',
                 dest: '<%= yeoman.app %>/scripts/inc/config.js',
                 constants: {
-                    settings: grunt.file.readJSON(appConfig.app + '/bundles/' + bundle + '/settings.json')
+                    settings: grunt.file.readJSON(appConfig.app + '/websites/' + website + '/settings.json')
                 }
             },
             dev: {
                 constants: {
                     settings: {
                         apiEndPoint: 'http://galactus.local.guest.net/api',
-                        bundle: bundle
+                        website: website
                     }
                 }
             },
@@ -337,7 +337,7 @@ module.exports = function (grunt) {
                 constants: {
                     settings: {
                         apiEndPoint: '/api',
-                        bundle: bundle
+                        website: website
                     }
                 }
             }
@@ -425,7 +425,7 @@ module.exports = function (grunt) {
     });
 
     grunt.registerTask('theme', function () {
-        grunt.file.write('app/styles/theme.scss', '@import "../bundles/' + bundle + '/theme.scss";');
+        grunt.file.write('app/styles/theme.scss', '@import "../websites/' + website + '/theme.scss";');
     });
 
     grunt.registerTask('serve', 'Compile then start a connect web server', function (target) {

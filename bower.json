@@ -16,12 +16,11 @@
         "angular-route": "1.2.16",
         "font-awesome": "~4.2.0",
         "ngInfiniteScroll": "~1.1.2",
-        "bootstrap-material-design": "*"
+        "bootstrap-material-design-sass": "*"
     },
     "devDependencies": {
         "angular-mocks": "1.2.16",
         "angular-scenario": "1.2.16"
-
     },
     "appPath": "app"
 }

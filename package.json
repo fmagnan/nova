@@ -38,5 +38,8 @@
   },
   "scripts": {
     "test": "grunt test"
+  },
+  "dependencies": {
+    "bootstrap-material-sass": "0.1.0-beta"
   }
 }
