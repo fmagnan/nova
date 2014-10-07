@@ -1,8 +1,10 @@
 {
     "title": "Planet BD",
     "googleAnalyticsIdentifier": "UA-XXX-BD",
-    "twitter" : {
+    "twitter": {
         "label": "",
         "url": ""
-    }
+    },
+    "apiEndPoint": "http://api.planetbd.jeuxderoles.net",
+    "remotePath": "/var/www/planetbd.jeuxderoles.net"
 }

@@ -23,6 +23,8 @@ module.exports = function (grunt) {
 
     var website = grunt.option('website') || 'default';
 
+    var website_settings = grunt.file.readJSON('app/websites/' + website + '/settings.json');
+
     // Define the configuration for all the tasks
     grunt.initConfig({
 
@@ -328,7 +330,7 @@ module.exports = function (grunt) {
             dev: {
                 constants: {
                     settings: {
-                        apiEndPoint: 'http://galactus.local.guest.net/api',
+                        apiEndPoint: 'http://galactus.local.guest.net/',
                         website: website
                     }
                 }
@@ -336,9 +338,38 @@ module.exports = function (grunt) {
             prod: {
                 constants: {
                     settings: {
-                        apiEndPoint: '/api',
                         website: website
                     }
+                }
+            }
+        },
+
+        rsync: {
+            options: {
+                args: ["--verbose"],
+                exclude: [".git*", "*.scss", "node_modules"],
+                recursive: true
+            },
+            dist: {
+                options: {
+                    src: "./",
+                    dest: "../dist"
+                }
+            },
+            stage: {
+                options: {
+                    src: "../dist/",
+                    dest: "/var/www/site",
+                    host: "user@staging-host",
+                    delete: true // Careful this option could cause data loss, read the docs!
+                }
+            },
+            prod: {
+                options: {
+                    src: "dist/",
+                    dest: website_settings.remotePath,
+                    host: "kimsufi",
+                    delete: true // Careful this option could cause data loss, read the docs!
                 }
             }
         },
@@ -476,5 +507,10 @@ module.exports = function (grunt) {
         'newer:jshint',
         'test',
         'build'
+    ]);
+
+    grunt.registerTask('deploy', [
+        'build',
+        'rsync:prod'
     ]);
 };

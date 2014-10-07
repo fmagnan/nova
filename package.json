@@ -40,6 +40,7 @@
     "test": "grunt test"
   },
   "dependencies": {
-    "bootstrap-material-sass": "0.1.0-beta"
+    "bootstrap-material-sass": "0.1.0-beta",
+    "grunt-rsync": "^0.6.2"
   }
 }

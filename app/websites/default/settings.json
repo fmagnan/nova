@@ -4,5 +4,6 @@
     "twitter" : {
         "label": "TWITTER LABEL",
         "url": "WEBSITE URL"
-    }
+    },
+    "apiEndPoint": "http://api.example.com"
 }

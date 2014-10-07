@@ -46,7 +46,7 @@ angular.module('nova').controller('MainCtrl', function ($scope, $http, settings,
 
     $scope.postsPagination = new Pagination();
 
-    $http.get(settings.apiEndPoint + '/feeds').success(function (response) {
+    $http.get(settings.apiEndPoint + 'feeds').success(function (response) {
         $scope.feeds = response.data;
     });
 
