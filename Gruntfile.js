@@ -23,7 +23,7 @@ module.exports = function (grunt) {
 
     var website = grunt.option('website') || 'default';
 
-    var website_settings = grunt.file.readJSON('app/websites/' + website + '/settings.json');
+    var websiteSettings = grunt.file.readJSON('app/websites/' + website + '/settings.json');
 
     // Define the configuration for all the tasks
     grunt.initConfig({
@@ -346,29 +346,29 @@ module.exports = function (grunt) {
 
         rsync: {
             options: {
-                args: ["--verbose"],
-                exclude: [".git*", "*.scss", "node_modules"],
+                args: ['--verbose'],
+                exclude: ['.git*', '*.scss', 'node_modules'],
                 recursive: true
             },
             dist: {
                 options: {
-                    src: "./",
-                    dest: "../dist"
+                    src: './',
+                    dest: '../dist'
                 }
             },
             stage: {
                 options: {
-                    src: "../dist/",
-                    dest: "/var/www/site",
-                    host: "user@staging-host",
+                    src: '../dist/',
+                    dest: '/var/www/site',
+                    host: 'user@staging-host',
                     delete: true // Careful this option could cause data loss, read the docs!
                 }
             },
             prod: {
                 options: {
-                    src: "dist/",
-                    dest: website_settings.remotePath,
-                    host: "kimsufi",
+                    src: 'dist/',
+                    dest: websiteSettings.remotePath,
+                    host: 'kimsufi',
                     delete: true // Careful this option could cause data loss, read the docs!
                 }
             }

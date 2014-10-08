@@ -16,10 +16,11 @@ angular.module('nova').filter('filtersByFeeds', function () {
     };
 });
 
-angular.module('nova').controller('MainCtrl', function ($scope, $http, settings, Pagination) {
+angular.module('nova').controller('MainController', function ($scope, $http, settings, Pagination, localStorageService) {
+    //functions
     $scope.removePost = function (id) {
-        for (var i=0; i<$scope.postsPagination.items.length; i++) {
-            if ($scope.postsPagination.items[i].id == id) {
+        for (var i = 0; i < $scope.postsPagination.items.length; i++) {
+            if ($scope.postsPagination.items[i].id === id) {
                 return $scope.postsPagination.items.splice(i, 1);
             }
         }
@@ -42,8 +43,14 @@ angular.module('nova').controller('MainCtrl', function ($scope, $http, settings,
         return $scope.selectedFeeds.indexOf(feedId) === -1;
     };
 
-    $scope.resetFiltersOnFeeds();
+    // local storage
+    var selectedFeedsInStore = localStorageService.get('selectedFeeds');
+    $scope.selectedFeeds = selectedFeedsInStore && selectedFeedsInStore || [];
+    $scope.$watch('selectedFeeds', function () {
+        localStorageService.add('selectedFeeds', $scope.selectedFeeds);
+    }, true);
 
+    // init
     $scope.postsPagination = new Pagination();
 
     $http.get(settings.apiEndPoint + 'feeds').success(function (response) {

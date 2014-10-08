@@ -8,8 +8,13 @@ angular.module('nova', [
     'ngResource',
     'ngRoute',
     'ngSanitize',
-    'ngTouch'
+    'ngTouch',
+    'LocalStorageModule'
 ]);
+
+angular.module('nova').config(['localStorageServiceProvider', function (localStorageServiceProvider) {
+    localStorageServiceProvider.setPrefix('ls');
+}]);
 
 angular.module('nova').controller('NovaController', function ($scope, settings) {
     $scope.settings = settings;
@@ -19,7 +24,7 @@ angular.module('nova').config(function ($routeProvider) {
     $routeProvider
         .when('/', {
             templateUrl: 'partials/main.html',
-            controller: 'MainCtrl'
+            controller: 'MainController'
         })
         .otherwise({
             redirectTo: '/'
