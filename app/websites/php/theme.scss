@@ -1,7 +1,22 @@
-/* empty */
-
-.badge-date {
-  background-color: #8892BF;
+body {
+  background-color: #2C2C2C;
+  color: white;
 }
 
-//sdsd
+.header {
+  background-color: #8892BF;
+  border-bottom: 4px solid #4F5B93;
+}
+
+h3 {
+  border-bottom: 1px dotted ;
+}
+
+.site-post.well.infobox {
+  background-color: #F2F2F2;
+  color: #333;
+}
+
+.badge-feed.selected {
+  background-color: #8892BF;
+}
