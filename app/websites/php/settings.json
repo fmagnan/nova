@@ -5,6 +5,6 @@
         "label": "",
         "url": ""
     },
-    "apiEndPoint": "http://api.planetphp.experimentation.fr",
+    "apiEndPoint": "http://api.planetphp.experimentation.fr/",
     "remotePath": "/var/www/planetphp.experimentation.fr"
 }

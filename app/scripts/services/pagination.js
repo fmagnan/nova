@@ -14,7 +14,7 @@ angular.module('nova').factory('Pagination', function ($http, settings) {
         }
         this.isLoading = true;
 
-        var url = settings.apiEndPoint + '/posts?limit=10&offset=' + this.offset;
+        var url = settings.apiEndPoint + 'posts?limit=10&offset=' + this.offset;
         $http.get(url).success(function (response) {
             if (0 === response.data.length) {
                 this.isLoading = true;

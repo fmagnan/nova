@@ -5,6 +5,6 @@
         "label": "Avec le planet, j'ai ma dose quotidienne de jeux de rôles !",
         "url": "http://planet.jeuxderoles.net"
     },
-    "apiEndPoint": "http://api.planet.jeuxderoles.net",
+    "apiEndPoint": "http://api.planet.jeuxderoles.net/",
     "remotePath": "/var/www/planet.jeuxderoles.net"
 }

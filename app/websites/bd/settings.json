@@ -5,6 +5,6 @@
         "label": "",
         "url": ""
     },
-    "apiEndPoint": "http://api.planetbd.jeuxderoles.net",
+    "apiEndPoint": "http://api.planetbd.jeuxderoles.net/",
     "remotePath": "/var/www/planetbd.jeuxderoles.net"
 }
