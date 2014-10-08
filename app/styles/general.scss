@@ -19,8 +19,8 @@ body {
 }
 
 .feeds-cloud {
-  margin-top:15px;
-  margin-bottom:15px;
+  margin-top: 15px;
+  margin-bottom: 15px;
 }
 
 .badge-date {
@@ -52,7 +52,11 @@ body {
   cursor: pointer;
 }
 
-.nova-close, .nova-more {
+.nova-close {
   position: relative;
-  left: 96%;
+}
+
+.nova-more {
+  position: relative;
+  left: 93%;
 }
