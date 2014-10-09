@@ -5,5 +5,7 @@
         "label": "TWITTER LABEL",
         "url": "WEBSITE URL"
     },
-    "apiEndPoint": "http://api.example.com/"
+    "apiEndPoint": "http://api.example.com/",
+    "remotePath": "/var/www/example.com",
+    "siteUrl": "http://example.com/"
 }

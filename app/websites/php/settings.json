@@ -6,5 +6,6 @@
         "url": ""
     },
     "apiEndPoint": "http://api.planetphp.experimentation.fr/",
-    "remotePath": "/var/www/planetphp.experimentation.fr"
+    "remotePath": "/var/www/planetphp.experimentation.fr",
+    "siteUrl": "http://planetphp.experimentation.fr/"
 }
