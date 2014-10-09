@@ -4,18 +4,18 @@ body {
   min-height: 1200px;
 }
 
-.header, .footer {
+.footer {
   padding-left: 15px;
   padding-right: 15px;
 }
 
-.header {
-  border-bottom: 1px solid grey;
-  margin-bottom: 15px;
+.navbar {
+  border-bottom: 4px solid grey;
 }
 
-.side-bar {
-  position: fixed;
+.content {
+  clear: both;
+  margin-top:55px;
 }
 
 .feeds-cloud {

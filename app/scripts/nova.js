@@ -16,8 +16,20 @@ angular.module('nova').config(['localStorageServiceProvider', function (localSto
     localStorageServiceProvider.setPrefix('ls');
 }]);
 
-angular.module('nova').controller('NovaController', function ($scope, settings) {
+angular.module('nova').controller('NovaController', function ($scope, settings, localStorageService) {
     $scope.settings = settings;
+
+    $scope.resetFiltersOnFeeds = function () {
+        $scope.selectedFeeds = [];
+    };
+
+    // local storage
+    var selectedFeedsInStore = localStorageService.get('selectedFeeds');
+    $scope.selectedFeeds = selectedFeedsInStore && selectedFeedsInStore || [];
+    $scope.$watch('selectedFeeds', function () {
+        localStorageService.add('selectedFeeds', $scope.selectedFeeds);
+    }, true);
+
 });
 
 angular.module('nova').config(function ($routeProvider) {

@@ -12,7 +12,7 @@ angular.module('nova').filter('filtersByFeeds', function () {
     };
 });
 
-angular.module('nova').controller('MainController', function ($scope, $http, settings, Pagination, localStorageService) {
+angular.module('nova').controller('MainController', function ($scope, $http, settings, Pagination) {
     //functions
     $scope.removePost = function (id) {
         for (var i = 0; i < $scope.postsPagination.items.length; i++) {
@@ -31,20 +31,9 @@ angular.module('nova').controller('MainController', function ($scope, $http, set
         }
     };
 
-    $scope.resetFiltersOnFeeds = function () {
-        $scope.selectedFeeds = [];
-    };
-
     $scope.isFeedSelected = function (feedId) {
         return $scope.selectedFeeds.indexOf(feedId) === -1;
     };
-
-    // local storage
-    var selectedFeedsInStore = localStorageService.get('selectedFeeds');
-    $scope.selectedFeeds = selectedFeedsInStore && selectedFeedsInStore || [];
-    $scope.$watch('selectedFeeds', function () {
-        localStorageService.add('selectedFeeds', $scope.selectedFeeds);
-    }, true);
 
     // init
     $scope.postsPagination = new Pagination();

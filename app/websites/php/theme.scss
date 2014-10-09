@@ -3,9 +3,13 @@ body {
   color: white;
 }
 
-.header {
+.navbar {
   background-color: #8892BF;
   border-bottom: 4px solid #4F5B93;
+}
+
+.navbar-default .navbar-brand {
+  color:white;
 }
 
 h3 {
