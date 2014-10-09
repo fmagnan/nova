@@ -22,8 +22,11 @@
                 </div>
             </div>
         </div>
+        <div class="well infobox">
+            sponsors
+        </div>
     </div>
-    <div class="col-md-5">
+    <div class="col-md-8">
         <div infinite-scroll='postsPagination.get()' infinite-scroll-disabled='postsPagination.isLoading'
              infinite-scroll-distance='1'>
             <div ng-repeat="(itemIndex, item) in postsPagination.items | filtersByFeeds:selectedFeeds"
@@ -55,16 +58,6 @@
         <div class="spinner" ng-show="postsPagination.isLoading && postsPagination.hasNext"></div>
     </div>
 
-    <div class="col-md-3">
-        <div class="well infobox">
-            <div class="feeds-cloud">
-                <span ng-repeat="feed in feeds" class="badge badge-feed clickable"
-                      ng-click="toggleFeed(feed.id)" ng-class="{'selected': isFeedSelected(feed.id)}">
-                    {{feed.name}}
-                </span>
-            </div>
-        </div>
-    </div>
     <div class="col-md-1"></div>
 
 </div>

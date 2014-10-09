@@ -22,24 +22,7 @@ angular.module('nova').controller('MainController', function ($scope, $http, set
         }
     };
 
-    $scope.toggleFeed = function (feedId) {
-        var position = $scope.selectedFeeds.indexOf(feedId);
-        if (position === -1) {
-            $scope.selectedFeeds.push(feedId);
-        } else {
-            $scope.selectedFeeds.splice(position, 1);
-        }
-    };
-
-    $scope.isFeedSelected = function (feedId) {
-        return $scope.selectedFeeds.indexOf(feedId) === -1;
-    };
-
     // init
     $scope.postsPagination = new Pagination();
-
-    $http.get(settings.apiEndPoint + 'feeds').success(function (response) {
-        $scope.feeds = response.data;
-    });
 
 });

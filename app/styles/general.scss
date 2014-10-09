@@ -15,12 +15,13 @@ body {
 
 .content {
   clear: both;
-  margin-top:55px;
+  margin-top: 55px;
 }
 
-.feeds-cloud {
-  margin-top: 15px;
-  margin-bottom: 15px;
+@media (min-width: 768px) {
+  .feeds-cloud {
+    width: 600px;
+  }
 }
 
 .badge-date {
