@@ -2,17 +2,13 @@
 
 angular.module('nova').filter('filtersByFeeds', function () {
     return function (items, selectedFeeds) {
-        if (selectedFeeds.length === 0) {
-            return items;
-        }
-        var filtered = [];
-        for (var i = 0; i < items.length; i++) {
-            var item = items[i];
-            if (selectedFeeds.indexOf(item.feedId) === -1) {
-                filtered.push(item);
+        var isFeedSelected = function (selectedFeeds) {
+            return function (item) {
+                return selectedFeeds.indexOf(item.feedId) === -1;
             }
-        }
-        return filtered;
+        };
+
+        return items.filter(isFeedSelected(selectedFeeds));
     };
 });
 
