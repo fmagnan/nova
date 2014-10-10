@@ -43,23 +43,25 @@
             <ul class="nav navbar-nav">
 
                 <li class="dropdown">
-                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">Filtrer <span
-                            class="caret"></span></a>
+                    <a href="javascript:void(0);" class="dropdown-toggle" data-toggle="dropdown">
+                        Filtrer
+                        <span class="caret"></span>
+                    </a>
                     <ul class="dropdown-menu" role="menu">
-                        <li>
-                            <a href="javascript:void(0);" ng-click="resetFiltersOnFeeds()">
-                                <i class="fa fa-close"></i>
-                                Supprimer les filtres
-                            </a>
-                        </li>
-                        <li>
-                            <div class="feeds-cloud">
-                                <span ng-repeat="feed in feeds" class="badge badge-feed clickable"
-                                      ng-click="toggleFeed(feed.id)" ng-class="{'selected': isFeedSelected(feed.id)}">
-                                    {{feed.name}}
-                                </span>
-                            </div>
-                        </li>
+                        <div class="feed-filters">
+                            <li>
+                                <a href="javascript:void(0);" ng-click="resetFiltersOnFeeds()" class="reset-filters">
+                                    <i class="fa fa-close"></i>
+                                    Supprimer les filtres
+                                </a>
+                            </li>
+                            <li>
+                                <a ng-repeat="feed in feeds" ng-click="toggleFeed(feed.id)"
+                                     ng-class="{'excluded': !isFeedSelected(feed.id)}" class="feed-filter">
+                                   {{feed.name}}
+                                </a>
+                            </li>
+                        </div>
                     </ul>
                 </li>
             </ul>

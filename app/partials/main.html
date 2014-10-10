@@ -1,6 +1,6 @@
 <div class="row">
     <div class="col-md-1"></div>
-    <div class="col-md-2">
+    <div class="col-md-2 hidden-xs">
         <div class="well infobox">
             <div class="social-widgets">
                 <div class="twitter-widget">
@@ -40,17 +40,18 @@
 
                 <p ng-bind-html="item.content"></p>
 
-                <div class="actions"><a ng-click="removePost(item.id)" class="nova-close">
-                <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-close fa-stack-1x fa-inverse"></i>
-                </span>
-                </a>
+                <div class="actions">
+                    <a ng-click="removePost(item.id)" class="nova-close">
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-close fa-stack-1x fa-inverse"></i>
+                        </span>
+                    </a>
                     <a href="{{item.url}}" target="_blank" class="nova-more">
-                <span class="fa-stack fa-lg">
-                    <i class="fa fa-circle fa-stack-2x"></i>
-                    <i class="fa fa-long-arrow-right fa-stack-1x fa-inverse"></i>
-                </span>
+                        <span class="fa-stack fa-lg">
+                            <i class="fa fa-circle fa-stack-2x"></i>
+                            <i class="fa fa-long-arrow-right fa-stack-1x fa-inverse"></i>
+                        </span>
                     </a>
                 </div>
             </div>

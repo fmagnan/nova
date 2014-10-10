@@ -1,0 +1,99 @@
+.dropdown-menu li a:hover {
+  background: inherit;
+}
+
+.feed-filters {
+  width: 800px;
+}
+
+a.feed-filter, a.reset-filters {
+  /* Normal State */
+  float: left;
+  display: inline-block;
+  position: relative;
+  margin: 0;
+  margin-top: 8px;
+  margin-left: 6px;
+  padding: 4px 15px 7px;
+  width: auto;
+  height: auto;
+  color: #fff;
+  font-family: Arial, Helvetica, sans-serif;
+  font-size: 12px;
+  font-weight: bold;
+  font-style: normal;
+  font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;
+  -moz-font-smoothing: antialiased;
+  -o-font-smoothing: antialiased;
+  -ms-font-smoothing: antialiased;
+  text-decoration: none;
+  text-shadow: 0 -1px 1px rgba(0, 0, 0, 0.50);
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -o-border-radius: 3px;
+  -ms-border-radius: 3px;
+  border: 1px solid rgba(0, 0, 0, 0.50);
+  border-top: 1px solid rgba(0, 0, 0, 0.001);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.35), 0px 1px 3px rgba(0, 0, 0, 0.18), inset 0px -3px 0px rgba(0, 0, 0, 0.35), inset 0px 14px 14px rgba(255, 255, 255, 0.10);
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.35), 0px 1px 3px rgba(0, 0, 0, 0.18), inset 0px -3px 0px rgba(0, 0, 0, 0.35), inset 0px 14px 14px rgba(255, 255, 255, 0.10);
+  -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.35), 0px 1px 3px rgba(0, 0, 0, 0.18), inset 0px -3px 0px rgba(0, 0, 0, 0.35), inset 0px 14px 14px rgba(255, 255, 255, 0.10);
+  -o-box-shadow: 0 0 10px rgba(0, 0, 0, 0.35), 0px 1px 3px rgba(0, 0, 0, 0.18), inset 0px -3px 0px rgba(0, 0, 0, 0.35), inset 0px 14px 14px rgba(255, 255, 255, 0.10);
+  -ms-box-shadow: 0 0 10px rgba(0, 0, 0, 0.35), 0px 1px 3px rgba(0, 0, 0, 0.18), inset 0px -3px 0px rgba(0, 0, 0, 0.35), inset 0px 14px 14px rgba(255, 255, 255, 0.10);
+  cursor: pointer;
+}
+
+a.feed-filter {
+  background: #669900;
+}
+
+a.reset-filters, a.reset-filters:active, .dropdown-menu li a.reset-filters:hover {
+  background: #990000;
+}
+
+.dropdown-menu li a.feed-filter:hover, a.feed-filter:active, a.feed-filter.excluded {
+  background: grey;
+}
+
+.dropdown-menu li a.feed-filter:hover, .dropdown-menu li a.reset-filters:hover {
+  /* Hover State */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.35), 0px 1px 3px rgba(0, 0, 0, 0.18), inset 0px -3px 0px rgba(0, 0, 0, 0.35), inset 0px 14px 14px rgba(255, 255, 255, 0.25);
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.35), 0px 1px 3px rgba(0, 0, 0, 0.18), inset 0px -3px 0px rgba(0, 0, 0, 0.35), inset 0px 14px 14px rgba(255, 255, 255, 0.25);
+  -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.35), 0px 1px 3px rgba(0, 0, 0, 0.18), inset 0px -3px 0px rgba(0, 0, 0, 0.35), inset 0px 14px 14px rgba(255, 255, 255, 0.25);
+  -o-box-shadow: 0 0 10px rgba(0, 0, 0, 0.35), 0px 1px 3px rgba(0, 0, 0, 0.18), inset 0px -3px 0px rgba(0, 0, 0, 0.35), inset 0px 14px 14px rgba(255, 255, 255, 0.25);
+  -ms-box-shadow: 0 0 10px rgba(0, 0, 0, 0.35), 0px 1px 3px rgba(0, 0, 0, 0.18), inset 0px -3px 0px rgba(0, 0, 0, 0.35), inset 0px 14px 14px rgba(255, 255, 255, 0.25);
+  -webkit-animation: glow 1s infinite ease-in-out;
+  cursor: pointer;
+}
+
+a.feed-filter:active, a.reset-filters:active, a.feed-filter.excluded {
+  /* Active State (clicked on) */
+  padding: 6px 15px 5px;
+  border-top: 1px solid rgba(0, 0, 0, 0.55);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.35), 0px 2px 1px rgba(255, 255, 255, 0.50), inset 0px 1px 4px rgba(0, 0, 0, 0.35), inset 0px -14px 14px rgba(255, 255, 255, 0.10);
+  -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.35), 0px 2px 1px rgba(255, 255, 255, 0.50), inset 0px 1px 4px rgba(0, 0, 0, 0.35), inset 0px -14px 14px rgba(255, 255, 255, 0.10);
+  -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.35), 0px 2px 1px rgba(255, 255, 255, 0.50), inset 0px 1px 4px rgba(0, 0, 0, 0.35), inset 0px -14px 14px rgba(255, 255, 255, 0.10);
+  -o-box-shadow: 0 0 10px rgba(0, 0, 0, 0.35), 0px 2px 1px rgba(255, 255, 255, 0.50), inset 0px 1px 4px rgba(0, 0, 0, 0.35), inset 0px -14px 14px rgba(255, 255, 255, 0.10);
+  -ms-box-shadow: 0 0 10px rgba(0, 0, 0, 0.35), 0px 2px 1px rgba(255, 255, 255, 0.50), inset 0px 1px 4px rgba(0, 0, 0, 0.35), inset 0px -14px 14px rgba(255, 255, 255, 0.10);
+  -webkit-animation: none;
+  cursor: pointer !important;
+}
+
+@-webkit-keyframes glow {
+  0% {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.35), 0px 1px 3px rgba(0, 0, 0, 0.18), inset 0px -3px 0px rgba(0, 0, 0, 0.35), inset 0px 14px 14px rgba(255, 255, 255, 0.35);
+    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.35), 0px 1px 3px rgba(0, 0, 0, 0.18), inset 0px -3px 0px rgba(0, 0, 0, 0.35), inset 0px 14px 14px rgba(255, 255, 255, 0.35);
+    -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.35), 0px 1px 3px rgba(0, 0, 0, 0.18), inset 0px -3px 0px rgba(0, 0, 0, 0.35), inset 0px 14px 14px rgba(255, 255, 255, 0.35);
+    -o-box-shadow: 0 0 10px rgba(0, 0, 0, 0.35), 0px 1px 3px rgba(0, 0, 0, 0.18), inset 0px -3px 0px rgba(0, 0, 0, 0.35), inset 0px 14px 14px rgba(255, 255, 255, 0.35);
+    -ms-box-shadow: 0 0 10px rgba(0, 0, 0, 0.35), 0px 1px 3px rgba(0, 0, 0, 0.18), inset 0px -3px 0px rgba(0, 0, 0, 0.35), inset 0px 14px 14px rgba(255, 255, 255, 0.35);
+  }
+
+  100% {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.35), 0px 1px 3px rgba(0, 0, 0, 0.18), inset 0px -3px 0px rgba(0, 0, 0, 0.35), inset 0px 14px 14px rgba(255, 255, 255, 0.18);
+    -webkit-box-shadow: 0 0 10px rgba(0, 0, 0, 0.35), 0px 1px 3px rgba(0, 0, 0, 0.18), inset 0px -3px 0px rgba(0, 0, 0, 0.35), inset 0px 14px 14px rgba(255, 255, 255, 0.18);
+    -moz-box-shadow: 0 0 10px rgba(0, 0, 0, 0.35), 0px 1px 3px rgba(0, 0, 0, 0.18), inset 0px -3px 0px rgba(0, 0, 0, 0.35), inset 0px 14px 14px rgba(255, 255, 255, 0.18);
+    -o-box-shadow: 0 0 10px rgba(0, 0, 0, 0.35), 0px 1px 3px rgba(0, 0, 0, 0.18), inset 0px -3px 0px rgba(0, 0, 0, 0.35), inset 0px 14px 14px rgba(255, 255, 255, 0.18);
+    -ms-box-shadow: 0 0 10px rgba(0, 0, 0, 0.35), 0px 1px 3px rgba(0, 0, 0, 0.18), inset 0px -3px 0px rgba(0, 0, 0, 0.35), inset 0px 14px 14px rgba(255, 255, 255, 0.18);
+  }
+}

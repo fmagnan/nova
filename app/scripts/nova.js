@@ -47,6 +47,10 @@ angular.module('nova').controller('NovaController', function ($scope, $http, set
         $scope.feeds = response.data;
     });
 
+    $('.dropdown-menu input, .dropdown-menu label').click(function(e) {
+        e.stopPropagation();
+    });
+
 });
 
 angular.module('nova').config(function ($routeProvider) {
