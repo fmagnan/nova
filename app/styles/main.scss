@@ -3,6 +3,9 @@ $icon-font-path: "../bower_components/bootstrap-sass-official/vendor/assets/font
 @import "bootstrap-sass-official/vendor/assets/stylesheets/bootstrap.scss";
 // endbower
 
+$primary-color: black;
+$background-color: white;
+
 @import "general.scss";
 @import "filters.scss";
 @import "animate.scss";
