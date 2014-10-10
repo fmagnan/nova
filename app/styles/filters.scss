@@ -6,6 +6,11 @@
   width: 800px;
 }
 
+.disable-feeds {
+  color: $primary-color;
+  margin-left: 6px;
+}
+
 a.feed-filter, a.reset-filters {
   /* Normal State */
   float: left;
