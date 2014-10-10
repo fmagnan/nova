@@ -4,8 +4,8 @@ angular.module('nova').filter('filtersByFeeds', function () {
     return function (items, selectedFeeds) {
         var isFeedSelected = function (selectedFeeds) {
             return function (item) {
-                return selectedFeeds.indexOf(item.feedId) === -1;
-            }
+                return selectedFeeds && selectedFeeds.indexOf(item.feedId) !== -1;
+            };
         };
 
         return items.filter(isFeedSelected(selectedFeeds));
@@ -24,5 +24,4 @@ angular.module('nova').controller('MainController', function ($scope, $http, set
 
     // init
     $scope.postsPagination = new Pagination();
-
 });

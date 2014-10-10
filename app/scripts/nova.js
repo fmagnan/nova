@@ -21,34 +21,33 @@ angular.module('nova').controller('NovaController', function ($scope, $http, set
 
     $scope.resetFiltersOnFeeds = function () {
         $scope.selectedFeeds = [];
+        for (var i = 0; i < $scope.feeds.length; i++) {
+            $scope.selectedFeeds.push($scope.feeds[i].id);
+        }
     };
 
     $scope.toggleFeed = function (feedId) {
         var position = $scope.selectedFeeds.indexOf(feedId);
-        if (position === -1) {
-            $scope.selectedFeeds.push(feedId);
-        } else {
+        if (position !== -1) {
             $scope.selectedFeeds.splice(position, 1);
+        } else {
+            $scope.selectedFeeds.push(feedId);
         }
     };
 
     $scope.isFeedSelected = function (feedId) {
-        return $scope.selectedFeeds.indexOf(feedId) === -1;
+        return $scope.selectedFeeds && $scope.selectedFeeds.indexOf(feedId) !== -1;
     };
 
     // local storage
     var selectedFeedsInStore = localStorageService.get('selectedFeeds');
-    $scope.selectedFeeds = selectedFeedsInStore && selectedFeedsInStore || [];
+    $scope.selectedFeeds = selectedFeedsInStore && selectedFeedsInStore || $scope.resetFiltersOnFeeds();
     $scope.$watch('selectedFeeds', function () {
         localStorageService.add('selectedFeeds', $scope.selectedFeeds);
     }, true);
 
     $http.get(settings.apiEndPoint + 'feeds').success(function (response) {
         $scope.feeds = response.data;
-    });
-
-    $('.dropdown-menu input, .dropdown-menu label').click(function(e) {
-        e.stopPropagation();
     });
 
 });

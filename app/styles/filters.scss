@@ -44,16 +44,16 @@ a.feed-filter, a.reset-filters {
   cursor: pointer;
 }
 
-a.feed-filter {
-  background: #669900;
+a.feed-filter, .dropdown-menu li a.feed-filter:hover {
+  background: grey;
 }
 
 a.reset-filters, a.reset-filters:active, .dropdown-menu li a.reset-filters:hover {
   background: #990000;
 }
 
-.dropdown-menu li a.feed-filter:hover, a.feed-filter:active, a.feed-filter.excluded {
-  background: grey;
+a.feed-filter:active, a.feed-filter.selected {
+  background: #669900;
 }
 
 .dropdown-menu li a.feed-filter:hover, .dropdown-menu li a.reset-filters:hover {
@@ -67,7 +67,7 @@ a.reset-filters, a.reset-filters:active, .dropdown-menu li a.reset-filters:hover
   cursor: pointer;
 }
 
-a.feed-filter:active, a.reset-filters:active, a.feed-filter.excluded {
+a.feed-filter:active, a.reset-filters:active, a.feed-filter.selected {
   /* Active State (clicked on) */
   padding: 6px 15px 5px;
   border-top: 1px solid rgba(0, 0, 0, 0.55);

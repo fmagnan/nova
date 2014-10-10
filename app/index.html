@@ -58,7 +58,7 @@
                             <li>
                                 Désactiver des flux
                                 <a ng-repeat="feed in feeds" ng-click="toggleFeed(feed.id)"
-                                     ng-class="{'excluded': !isFeedSelected(feed.id)}" class="feed-filter">
+                                     ng-class="{'selected': isFeedSelected(feed.id)}" class="feed-filter">
                                    {{feed.name}}
                                 </a>
                             </li>
