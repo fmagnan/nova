@@ -21,6 +21,9 @@ angular.module('nova').controller('NovaController', function ($scope, $http, set
 
     $scope.resetFiltersOnFeeds = function () {
         $scope.selectedFeeds = [];
+        if (typeof $scope.feeds === 'undefined') {
+            return;
+        }
         for (var i = 0; i < $scope.feeds.length; i++) {
             $scope.selectedFeeds.push($scope.feeds[i].id);
         }
