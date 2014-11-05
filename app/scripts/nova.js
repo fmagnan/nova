@@ -19,10 +19,14 @@ angular.module('nova').config(['localStorageServiceProvider', function (localSto
 angular.module('nova').controller('NovaController', function ($scope, $http, settings, localStorageService) {
     $scope.settings = settings;
 
-    $scope.resetFiltersOnFeeds = function () {
+    $scope.buildFeeds = function (response) {
+        $scope.feeds = response.data;
+    };
+
+    $scope.resetFiltersOnFeeds = function (response) {
         $scope.selectedFeeds = [];
-        if (typeof $scope.feeds === 'undefined') {
-            return;
+        if (typeof response !== 'undefined') {
+            $scope.feeds = response.data;
         }
         for (var i = 0; i < $scope.feeds.length; i++) {
             $scope.selectedFeeds.push($scope.feeds[i].id);
@@ -42,16 +46,17 @@ angular.module('nova').controller('NovaController', function ($scope, $http, set
         return $scope.selectedFeeds && $scope.selectedFeeds.indexOf(feedId) !== -1;
     };
 
-    // local storage
-    var selectedFeedsInStore = localStorageService.get('selectedFeeds');
-    $scope.selectedFeeds = selectedFeedsInStore && selectedFeedsInStore || $scope.resetFiltersOnFeeds();
     $scope.$watch('selectedFeeds', function () {
         localStorageService.add('selectedFeeds', $scope.selectedFeeds);
     }, true);
 
-    $http.get(settings.apiEndPoint + 'feeds').success(function (response) {
-        $scope.feeds = response.data;
-    });
+    var selectedFeedsInStore = localStorageService.get('selectedFeeds');
+    if (selectedFeedsInStore) {
+        $scope.selectedFeeds = selectedFeedsInStore;
+        $http.get(settings.apiEndPoint + 'feeds').success($scope.buildFeeds);
+    } else {
+        $http.get(settings.apiEndPoint + 'feeds').success($scope.resetFiltersOnFeeds);
+    }
 
 });
 
