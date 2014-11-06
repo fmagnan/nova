@@ -1,6 +1,7 @@
 {
     "title": "Planet BD",
-    "googleAnalyticsIdentifier": "UA-XXX-BD",
+    "googleAnalyticsIdentifier": "UA-56475739-1",
+    "isAdsenseEnabled": false,
     "twitter": {
         "label": "",
         "url": ""

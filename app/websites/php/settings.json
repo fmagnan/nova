@@ -1,11 +1,12 @@
 {
     "title": "Planet PHP FR",
-    "googleAnalyticsIdentifier": "UA-XXX-PHP",
+    "googleAnalyticsIdentifier": "UA-56475739-2",
+    "isAdsenseEnabled": false,
     "twitter" : {
         "label": "",
         "url": ""
     },
-    "apiEndPoint": "http://api.planetphp.experimentation.fr/",
-    "remotePath": "/var/www/planetphp.experimentation.fr",
-    "siteUrl": "http://planetphp.experimentation.fr/"
+    "apiEndPoint": "http://api.planetphp.gamelab.fr/",
+    "remotePath": "/var/www/planetphp.gamelab.fr",
+    "siteUrl": "http://planetphp.gamelab.fr/"
 }

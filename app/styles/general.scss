@@ -20,6 +20,9 @@ body {
 
 .site-post img {
   max-width: 40%;
+  float:left;
+  margin-right:25px;
+  margin-bottom:10px;
 }
 
 .nova-close, .nova-more {
@@ -29,4 +32,9 @@ body {
 
 .rss i {
   color:orange;
+}
+
+.actions {
+  clear:both;
+
 }
