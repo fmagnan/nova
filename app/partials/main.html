@@ -33,7 +33,7 @@
             <div ng-repeat="(itemIndex, item) in postsPagination.items | filtersByFeeds:selectedFeeds"
                  class="well infobox site-post">
 
-                <h3>{{item.title}} - {{item.creationDate}}</h3>
+                <h3>{{item.title}} - {{item.pubDate}}</h3>
 
                 <p>
                     <span class="badge badge-feed">{{item.feedName}}</span>
