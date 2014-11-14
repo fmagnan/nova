@@ -14,13 +14,13 @@ angular.module('nova').factory('Pagination', function ($http, settings) {
         }
         this.isLoading = true;
 
-        var url = settings.apiEndPoint + 'posts?limit=10&offset=' + this.offset;
+        var url = settings.apiEndPoint + 'posts?limit=1&offset=' + this.offset;
         $http.get(url).success(function (response) {
             if (0 === response.data.length) {
                 this.isLoading = true;
                 this.hasNext = false;
             } else {
-                for (var i = 0; i < response.data.length; i++) {
+                for (var i = 0; i < 1 /*response.data.length*/; i++) {
                     this.items.push(response.data[i]);
                 }
                 this.offset = this.items.length;
