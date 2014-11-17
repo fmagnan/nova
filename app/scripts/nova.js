@@ -67,12 +67,13 @@ angular.module('nova').controller('NovaController', function ($scope, $http, set
             var post = element.parent().parent()[0];
             var initialPosition = post.getBoundingClientRect().top;
 
-            var relocate = function (element, position) {
+            var relocate = function (element, position, message) {
+//                console.log(message);
                 element.css({top: position});
                 scope.$apply();
             };
 
-            //console.log(initialPosition);
+            console.log(initialPosition);
 
             angular.element($window).bind('scroll', function () {
                 var scrollTop = this.scrollY;
@@ -81,25 +82,15 @@ angular.module('nova').controller('NovaController', function ($scope, $http, set
                 var postBottom = initialPosition + postDimensions.height;
                 var futurePosition = scrollTop - initialPosition + 100;
 
-                //  console.log( post.getBoundingClientRect());
-
                 var info = 'fenetre ' + scrollTop + ' -> ' + scrollBottom + ', post ' + initialPosition + ' -> ' + postBottom + ', position ' + futurePosition;
                 if (initialPosition < scrollTop && postBottom > scrollBottom) {
-                    // le post déborde en haut et en bas
-                    console.log('le post deborde en haut et en bas ' + info);
-                    relocate(element, futurePosition);
+                    relocate(element, futurePosition, 'le post deborde en haut et en bas ' + info);
                 } else if (initialPosition < scrollTop && futurePosition < (postDimensions.height - 100)) {
-                    // le post déborde en haut
-                    console.log('le post deborde juste en haut ' + info);
-                    relocate(element, futurePosition);
+                    relocate(element, futurePosition, 'le post deborde juste en haut ' + info);
                 } else if (postBottom > scrollBottom && futurePosition > (initialPosition + 100)) {
-                    // le post déborde en bas
-                    console.log('le post deborde juste en bas ' + info);
-                    relocate(element, futurePosition);
+                    relocate(element, futurePosition, 'le post deborde juste en bas ' + info);
                 } else if (initialPosition > scrollTop && postBottom < scrollBottom) {
-                    // le post est compris dans la fenetre de scrolling
-                    console.log('le post est inclus ' + info);
-                    relocate(element, futurePosition);
+                    relocate(element, futurePosition, 'le post est inclus ' + info);
                 }
 
             });
