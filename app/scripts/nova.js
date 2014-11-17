@@ -59,35 +59,51 @@ angular.module('nova').controller('NovaController', function ($scope, $http, set
     }
 
 }).directive('novaSticky', ['$window', function ($window) {
-    function link(scope, element, attrs) {
-
-        var post, initialPosition;
-
-        post = element.parent().parent()[0];
-        initialPosition = post.getBoundingClientRect().top;
-
-        console.log(post);
-        console.log(initialPosition);
-
-        angular.element($window).bind('scroll', function () {
-            var scrollTop = this.scrollY;
-            var scrollBottom = scrollTop + this.outerHeight;
-            var postTop = post.getBoundingClientRect().top;
-            var widgetPosition;
-
-            widgetPosition = initialPosition + 100 + scrollTop;
-            if (widgetPosition > (postTop + 100) && widgetPosition < (post.offsetHeight - 100)) {
-                console.log('window [' + scrollTop + ', ' + scrollBottom + '], height [' + postTop + ', ' + post.offsetHeight + '], widget position:' + widgetPosition);
-
-                element.css({top: widgetPosition});
-                scope.$apply();
-            }
-        });
-
-    }
 
     return {
-        link: link
+        restrict: 'A',
+        scope: {},
+        link: function (scope, element, attrs) {
+            var post = element.parent().parent()[0];
+            var initialPosition = post.getBoundingClientRect().top;
+
+            var relocate = function (element, position) {
+                element.css({top: position});
+                scope.$apply();
+            };
+
+            //console.log(initialPosition);
+
+            angular.element($window).bind('scroll', function () {
+                var scrollTop = this.scrollY;
+                var scrollBottom = scrollTop + this.innerHeight;
+                var postDimensions = post.getBoundingClientRect();
+                var postBottom = initialPosition + postDimensions.height;
+                var futurePosition = scrollTop - initialPosition + 100;
+
+                //  console.log( post.getBoundingClientRect());
+
+                var info = 'fenetre ' + scrollTop + ' -> ' + scrollBottom + ', post ' + initialPosition + ' -> ' + postBottom + ', position ' + futurePosition;
+                if (initialPosition < scrollTop && postBottom > scrollBottom) {
+                    // le post déborde en haut et en bas
+                    console.log('le post deborde en haut et en bas ' + info);
+                    relocate(element, futurePosition);
+                } else if (initialPosition < scrollTop && futurePosition < (postDimensions.height - 100)) {
+                    // le post déborde en haut
+                    console.log('le post deborde juste en haut ' + info);
+                    relocate(element, futurePosition);
+                } else if (postBottom > scrollBottom && futurePosition > (initialPosition + 100)) {
+                    // le post déborde en bas
+                    console.log('le post deborde juste en bas ' + info);
+                    relocate(element, futurePosition);
+                } else if (initialPosition > scrollTop && postBottom < scrollBottom) {
+                    // le post est compris dans la fenetre de scrolling
+                    console.log('le post est inclus ' + info);
+                    relocate(element, futurePosition);
+                }
+
+            });
+        }
     };
 }]);
 
