@@ -61,64 +61,29 @@ angular.module('nova').controller('NovaController', function ($scope, $http, set
 }).directive('novaSticky', ['$window', function ($window) {
     function link(scope, element, attrs) {
 
+        var post, initialPosition;
+
+        post = element.parent().parent()[0];
+        initialPosition = post.getBoundingClientRect().top;
+
+        console.log(post);
+        console.log(initialPosition);
 
         angular.element($window).bind('scroll', function () {
-
-            //changeColor();
-           // var newOffset = parseInt(this.pageYOffset) + 100;
-
-            //console.log(this);
-
-            var scrollTop = this.pageYOffset;
+            var scrollTop = this.scrollY;
             var scrollBottom = scrollTop + this.outerHeight;
-
-            var post = element.parent().parent()[0];
-
-            //console.log($window);
-
-            //console.log(post);
-
-            //var elemTop = post.offsetTop;
             var postTop = post.getBoundingClientRect().top;
-            var postBottom = postTop + post.offsetHeight;
+            var widgetPosition;
 
-            console.log('window ' + scrollTop + ' => ' + scrollBottom + ', post ' + postTop + ' => ' + postBottom);
+            widgetPosition = initialPosition + 100 + scrollTop;
+            if (widgetPosition > (postTop + 100) && widgetPosition < (post.offsetHeight - 100)) {
+                console.log('window [' + scrollTop + ', ' + scrollBottom + '], height [' + postTop + ', ' + post.offsetHeight + '], widget position:' + widgetPosition);
 
-            var newOffset;
-
-            if (postBottom > scrollBottom && postTop < scrollTop) {
-                //console.log('le post est trop grand');
-                newOffset = 200 + scrollTop;
-                element.css({top: newOffset});
-                scope.$apply();
-            } else if (postBottom > scrollBottom) {
-                console.log('le bas du post est cache');
-                newOffset = postTop + 100;
-                element.css({top: newOffset});
-                scope.$apply();
-            } else if (postTop < scrollTop) {
-                console.log('le haut du post est cache');
-                newOffset = postBottom - 100;
-                element.css({top: newOffset});
+                element.css({top: widgetPosition});
                 scope.$apply();
             }
-
         });
 
-        /*       scope.$watch(attrs.offset, function (value) {
-         changeColor(Math.floor(Math.random() * 16777215).toString(16));
-         });
-
-         $window.scroll
-
-         element.on('$destroy', function () {
-         //$interval.cancel(timeoutId);
-         });
-
-         // start the UI update process; save the timeoutId for canceling
-         /*timeoutId = $interval(function() {
-         updateTime(); // update DOM
-         }, 1000);*/
     }
 
     return {

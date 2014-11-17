@@ -32,7 +32,7 @@
 
     <div class="col-md-8">
 
-        <div id="lorem" class="well infobox site-post">
+       <div id="lorem" class="well infobox site-post">
             <div>
 
                 <div nova-sticky class="actions">widget</div>
@@ -119,9 +119,8 @@
             <div ng-repeat="(itemIndex, item) in postsPagination.items | filtersByFeeds:selectedFeeds"
                  class="well infobox site-post">
 
-                <div ng-include="'partials/actions.html'"></div>
-
                 <div class="post-body">
+                    <div  ng-include="'partials/actions.html'"></div>
                     <h3>{{item.title}} - {{item.pubDate}}</h3>
 
                     <p>
