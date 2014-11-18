@@ -67,10 +67,25 @@ angular.module('nova').controller('NovaController', function ($scope, $http, set
 
             var $window = angular.element(window);
 
-            var move = function (widget, position, message) {
-//                console.log(message);
+            var move = function (widget, position) {
                 widget.css({top: position});
                 scope.$apply();
+            };
+
+            var isPostOverflowOnTopAndBottom = function (absolutePosition, scrollTop, postBottom, scrollBottom) {
+                return absolutePosition < scrollTop && postBottom > scrollBottom;
+            };
+
+            var isPostOverflowOnlyOnTop = function (absolutePosition, scrollTop, futurePosition, absoluteHeight, offset) {
+                return absolutePosition < scrollTop && futurePosition < (absoluteHeight - offset);
+            };
+
+            var isPostOverflowOnlyOnBottom = function (postBottom, scrollBottom, futurePosition, absolutePosition, offset) {
+                return postBottom > scrollBottom && futurePosition > (absolutePosition + offset);
+            };
+
+            var isPostIsFullyVisible = function (absolutePosition, scrollTop, postBottom, scrollBottom) {
+                return absolutePosition > scrollTop && postBottom < scrollBottom;
             };
 
             var foobar = function () {
@@ -81,21 +96,18 @@ angular.module('nova').controller('NovaController', function ($scope, $http, set
                     post = element[0],
                     postRect = post.getBoundingClientRect(),
                     absolutePosition = postRect.top - bodyRect.top,
+                    absoluteHeight = postRect.height,
                     widget = element.find('.actions'),
                     scrollTop = this.scrollY,
                     scrollBottom = scrollTop + this.innerHeight,
-                    postBottom = absolutePosition + postRect.height,
+                    postBottom = absolutePosition + absoluteHeight,
                     futurePosition = scrollTop - absolutePosition + offset;
 
-                var info = 'fenetre ' + scrollTop + ' -> ' + scrollBottom + ', post ' + absolutePosition + ' -> ' + postBottom + ', position ' + futurePosition;
-                if (absolutePosition < scrollTop && postBottom > scrollBottom) {
-                    move(widget, futurePosition, 'le post deborde en haut et en bas ' + info);
-                } else if (absolutePosition < scrollTop && futurePosition < (postRect.height - offset)) {
-                    move(widget, futurePosition, 'le post deborde juste en haut ' + info);
-                } else if (postBottom > scrollBottom && futurePosition > (absolutePosition + offset)) {
-                    move(widget, futurePosition, 'le post deborde juste en bas ' + info);
-                } else if (absolutePosition > scrollTop && postBottom < scrollBottom) {
-                    move(widget, futurePosition, 'le post est inclus ' + info);
+                if (isPostOverflowOnTopAndBottom(absolutePosition, scrollTop, postBottom, scrollBottom) ||
+                    isPostOverflowOnlyOnTop(absolutePosition, scrollTop, futurePosition, absoluteHeight, offset) ||
+                    isPostOverflowOnlyOnBottom(postBottom, scrollBottom, futurePosition, absolutePosition, offset) ||
+                    isPostIsFullyVisible(absolutePosition, scrollTop, postBottom, scrollBottom)) {
+                    move(widget, futurePosition);
                 }
             };
 
