@@ -67,13 +67,15 @@ angular.module('nova').controller('NovaController', function ($scope, $http, set
 
             var $window = angular.element(window);
 
-            var relocate = function (widget, position, message) {
+            var move = function (widget, position, message) {
 //                console.log(message);
                 widget.css({top: position});
                 scope.$apply();
             };
 
             var foobar = function () {
+
+                var offset = parseInt(attrs.offset);
 
                 var bodyRect = document.body.getBoundingClientRect(),
                     post = element[0],
@@ -83,17 +85,17 @@ angular.module('nova').controller('NovaController', function ($scope, $http, set
                     scrollTop = this.scrollY,
                     scrollBottom = scrollTop + this.innerHeight,
                     postBottom = absolutePosition + postRect.height,
-                    futurePosition = scrollTop - absolutePosition + 100;
+                    futurePosition = scrollTop - absolutePosition + offset;
 
                 var info = 'fenetre ' + scrollTop + ' -> ' + scrollBottom + ', post ' + absolutePosition + ' -> ' + postBottom + ', position ' + futurePosition;
                 if (absolutePosition < scrollTop && postBottom > scrollBottom) {
-                    relocate(widget, futurePosition, 'le post deborde en haut et en bas ' + info);
-                } else if (absolutePosition < scrollTop && futurePosition < (postRect.height - 100)) {
-                    relocate(widget, futurePosition, 'le post deborde juste en haut ' + info);
-                } else if (postBottom > scrollBottom && futurePosition > (absolutePosition + 100)) {
-                    relocate(widget, futurePosition, 'le post deborde juste en bas ' + info);
+                    move(widget, futurePosition, 'le post deborde en haut et en bas ' + info);
+                } else if (absolutePosition < scrollTop && futurePosition < (postRect.height - offset)) {
+                    move(widget, futurePosition, 'le post deborde juste en haut ' + info);
+                } else if (postBottom > scrollBottom && futurePosition > (absolutePosition + offset)) {
+                    move(widget, futurePosition, 'le post deborde juste en bas ' + info);
                 } else if (absolutePosition > scrollTop && postBottom < scrollBottom) {
-                    relocate(widget, futurePosition, 'le post est inclus ' + info);
+                    move(widget, futurePosition, 'le post est inclus ' + info);
                 }
             };
 
