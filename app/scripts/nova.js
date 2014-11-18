@@ -65,9 +65,7 @@ angular.module('nova').controller('NovaController', function ($scope, $http, set
         scope: {},
         link: function (scope, element, attrs) {
 
-            var $window = angular.element(window),
-                post = element[0],
-                widget = element.find('.actions');
+            var $window = angular.element(window);
 
             var relocate = function (widget, position, message) {
 //                console.log(message);
@@ -78,13 +76,14 @@ angular.module('nova').controller('NovaController', function ($scope, $http, set
             var foobar = function () {
 
                 var bodyRect = document.body.getBoundingClientRect(),
+                    post = element[0],
                     postRect = post.getBoundingClientRect(),
-                    absolutePosition = postRect.top - bodyRect.top;
-
-                var scrollTop = this.scrollY;
-                var scrollBottom = scrollTop + this.innerHeight;
-                var postBottom = absolutePosition + postRect.height;
-                var futurePosition = scrollTop - absolutePosition + 100;
+                    absolutePosition = postRect.top - bodyRect.top,
+                    widget = element.find('.actions'),
+                    scrollTop = this.scrollY,
+                    scrollBottom = scrollTop + this.innerHeight,
+                    postBottom = absolutePosition + postRect.height,
+                    futurePosition = scrollTop - absolutePosition + 100;
 
                 var info = 'fenetre ' + scrollTop + ' -> ' + scrollBottom + ', post ' + absolutePosition + ' -> ' + postBottom + ', position ' + futurePosition;
                 if (absolutePosition < scrollTop && postBottom > scrollBottom) {
@@ -99,8 +98,6 @@ angular.module('nova').controller('NovaController', function ($scope, $http, set
             };
 
             $window.on('scroll', foobar);
-
-            console.log(absolutePosition);
         }
     };
 }]);
