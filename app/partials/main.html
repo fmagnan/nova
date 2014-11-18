@@ -32,9 +32,9 @@
 
         <div ng-include="'partials/staticposts.html'"></div>
 
-        <div infinite-scroll='postsPagination.get()' infinite-scroll-disabled='postsPagination.isLoading'
+        <!--<div infinite-scroll='postsPagination.get()' infinite-scroll-disabled='postsPagination.isLoading'
              infinite-scroll-distance='1'>
-            <div ng-repeat="(itemIndex, item) in postsPagination.items | filtersByFeeds:selectedFeeds"
+            <div nova-sticky ng-repeat="(itemIndex, item) in postsPagination.items | filtersByFeeds:selectedFeeds"
                  class="well infobox site-post">
 
                 <div class="post-body">
@@ -52,7 +52,7 @@
         </div>
         <div class="spinner" ng-show="postsPagination.isLoading && postsPagination.hasNext">
             <img src="images/spinner.gif"/>
-        </div>
+        </div>-->
     </div>
 
     <div class="col-md-1"></div>

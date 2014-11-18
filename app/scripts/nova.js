@@ -64,9 +64,10 @@ angular.module('nova').controller('NovaController', function ($scope, $http, set
         restrict: 'A',
         scope: {},
         link: function (scope, element, attrs) {
-            var post = element[0];
 
-            var initialPosition = post.getBoundingClientRect().top;
+            var $window = angular.element(window),
+                post = element[0],
+                widget = element.find('.actions');
 
             var relocate = function (widget, position, message) {
 //                console.log(message);
@@ -74,29 +75,32 @@ angular.module('nova').controller('NovaController', function ($scope, $http, set
                 scope.$apply();
             };
 
-            console.log(initialPosition);
+            var foobar = function () {
 
-            var widget = element.find('.actions');
+                var bodyRect = document.body.getBoundingClientRect(),
+                    postRect = post.getBoundingClientRect(),
+                    absolutePosition = postRect.top - bodyRect.top;
 
-            angular.element($window).bind('scroll', function () {
                 var scrollTop = this.scrollY;
                 var scrollBottom = scrollTop + this.innerHeight;
-                var postDimensions = post.getBoundingClientRect();
-                var postBottom = initialPosition + postDimensions.height;
-                var futurePosition = scrollTop - initialPosition + 100;
+                var postBottom = absolutePosition + postRect.height;
+                var futurePosition = scrollTop - absolutePosition + 100;
 
-                var info = 'fenetre ' + scrollTop + ' -> ' + scrollBottom + ', post ' + initialPosition + ' -> ' + postBottom + ', position ' + futurePosition;
-                if (initialPosition < scrollTop && postBottom > scrollBottom) {
+                var info = 'fenetre ' + scrollTop + ' -> ' + scrollBottom + ', post ' + absolutePosition + ' -> ' + postBottom + ', position ' + futurePosition;
+                if (absolutePosition < scrollTop && postBottom > scrollBottom) {
                     relocate(widget, futurePosition, 'le post deborde en haut et en bas ' + info);
-                } else if (initialPosition < scrollTop && futurePosition < (postDimensions.height - 100)) {
+                } else if (absolutePosition < scrollTop && futurePosition < (postRect.height - 100)) {
                     relocate(widget, futurePosition, 'le post deborde juste en haut ' + info);
-                } else if (postBottom > scrollBottom && futurePosition > (initialPosition + 100)) {
+                } else if (postBottom > scrollBottom && futurePosition > (absolutePosition + 100)) {
                     relocate(widget, futurePosition, 'le post deborde juste en bas ' + info);
-                } else if (initialPosition > scrollTop && postBottom < scrollBottom) {
+                } else if (absolutePosition > scrollTop && postBottom < scrollBottom) {
                     relocate(widget, futurePosition, 'le post est inclus ' + info);
                 }
+            };
 
-            });
+            $window.on('scroll', foobar);
+
+            console.log(absolutePosition);
         }
     };
 }]);
