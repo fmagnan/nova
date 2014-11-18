@@ -64,16 +64,19 @@ angular.module('nova').controller('NovaController', function ($scope, $http, set
         restrict: 'A',
         scope: {},
         link: function (scope, element, attrs) {
-            var post = element.parent().parent()[0];
+            var post = element[0];
+
             var initialPosition = post.getBoundingClientRect().top;
 
-            var relocate = function (element, position, message) {
+            var relocate = function (widget, position, message) {
 //                console.log(message);
-                element.css({top: position});
+                widget.css({top: position});
                 scope.$apply();
             };
 
             console.log(initialPosition);
+
+            var widget = element.find('.actions');
 
             angular.element($window).bind('scroll', function () {
                 var scrollTop = this.scrollY;
@@ -84,13 +87,13 @@ angular.module('nova').controller('NovaController', function ($scope, $http, set
 
                 var info = 'fenetre ' + scrollTop + ' -> ' + scrollBottom + ', post ' + initialPosition + ' -> ' + postBottom + ', position ' + futurePosition;
                 if (initialPosition < scrollTop && postBottom > scrollBottom) {
-                    relocate(element, futurePosition, 'le post deborde en haut et en bas ' + info);
+                    relocate(widget, futurePosition, 'le post deborde en haut et en bas ' + info);
                 } else if (initialPosition < scrollTop && futurePosition < (postDimensions.height - 100)) {
-                    relocate(element, futurePosition, 'le post deborde juste en haut ' + info);
+                    relocate(widget, futurePosition, 'le post deborde juste en haut ' + info);
                 } else if (postBottom > scrollBottom && futurePosition > (initialPosition + 100)) {
-                    relocate(element, futurePosition, 'le post deborde juste en bas ' + info);
+                    relocate(widget, futurePosition, 'le post deborde juste en bas ' + info);
                 } else if (initialPosition > scrollTop && postBottom < scrollBottom) {
-                    relocate(element, futurePosition, 'le post est inclus ' + info);
+                    relocate(widget, futurePosition, 'le post est inclus ' + info);
                 }
 
             });
