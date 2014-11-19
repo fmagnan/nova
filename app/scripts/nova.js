@@ -64,8 +64,16 @@ angular.module('nova').controller('NovaController', function ($scope, $http, set
         restrict: 'A',
         scope: {},
         link: function (scope, element, attrs) {
-
             var $window = angular.element(window);
+
+            var body = document.getElementsByTagName('body')[0];
+            var canvas = document.createElement('div');
+            canvas.setAttribute('class', 'canvas');
+            canvas.setAttribute('id', 'canvas-' + attrs.itemid);
+            canvas.innerHTML = '&nbsp;';
+            canvas.style.top = "125px";
+            canvas.style.left = "0px";
+            body.appendChild(canvas);
 
             var move = function (widget, position) {
                 widget.css({top: position});
@@ -84,10 +92,6 @@ angular.module('nova').controller('NovaController', function ($scope, $http, set
                 return postBottom > scrollBottom && futurePosition > (absolutePosition + offset);
             };
 
-            var isPostIsFullyVisible = function (absolutePosition, scrollTop, postBottom, scrollBottom) {
-                return absolutePosition > scrollTop && postBottom < scrollBottom;
-            };
-
             var foobar = function () {
 
                 var offset = parseInt(attrs.offset);
@@ -103,10 +107,13 @@ angular.module('nova').controller('NovaController', function ($scope, $http, set
                     postBottom = absolutePosition + absoluteHeight,
                     futurePosition = scrollTop - absolutePosition + offset;
 
+                var itemid = post.attributes.getNamedItem('itemid').value;
+                var boundCanvas = document.getElementById('canvas-' + itemid);
+                boundCanvas.style.top = absolutePosition + "px";
+
                 if (isPostOverflowOnTopAndBottom(absolutePosition, scrollTop, postBottom, scrollBottom) ||
                     isPostOverflowOnlyOnTop(absolutePosition, scrollTop, futurePosition, absoluteHeight, offset) ||
-                    isPostOverflowOnlyOnBottom(postBottom, scrollBottom, futurePosition, absolutePosition, offset) ||
-                    isPostIsFullyVisible(absolutePosition, scrollTop, postBottom, scrollBottom)) {
+                    isPostOverflowOnlyOnBottom(postBottom, scrollBottom, futurePosition, absolutePosition, offset)) {
                     move(widget, futurePosition);
                 }
             };

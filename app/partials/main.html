@@ -29,30 +29,33 @@
     </div>
 
     <div class="col-md-8">
+            <!--<div ng-include="'partials/staticposts.html'"></div>-->
 
-        <!--<div ng-include="'partials/staticposts.html'"></div>-->
+            <div infinite-scroll='postsPagination.get()' infinite-scroll-disabled='postsPagination.isLoading'
+                 infinite-scroll-distance='1'>
+                <div nova-sticky offset="100"
+                     ng-repeat="(itemIndex, item) in postsPagination.items | filtersByFeeds:selectedFeeds"
+                     class="well infobox site-post" itemid="{{item.id}}">
 
-        <div infinite-scroll='postsPagination.get()' infinite-scroll-disabled='postsPagination.isLoading'
-             infinite-scroll-distance='1'>
-            <div nova-sticky offset="100" ng-repeat="(itemIndex, item) in postsPagination.items | filtersByFeeds:selectedFeeds"
-                 class="well infobox site-post">
+                    <div class="post-body">
+                        <div ng-include="'partials/actions.html'"></div>
+                        <h3>{{item.title}} - {{item.pubDate}}</h3>
 
-                <div class="post-body">
-                    <div ng-include="'partials/actions.html'"></div>
-                    <h3>{{item.title}} - {{item.pubDate}}</h3>
+                        <p>
+                            <span class="badge badge-feed">{{item.feedName}}</span>
+                        </p>
 
-                    <p>
-                        <span class="badge badge-feed">{{item.feedName}}</span>
-                    </p>
+                        <p ng-bind-html="item.content"></p>
+                    </div>
 
-                    <p ng-bind-html="item.content"></p>
                 </div>
-
             </div>
-        </div>
-        <div class="spinner" ng-show="postsPagination.isLoading && postsPagination.hasNext">
-            <img src="images/spinner.gif"/>
-        </div>
+            <div class="spinner" ng-show="postsPagination.isLoading && postsPagination.hasNext">
+                <img src="images/spinner.gif"/>
+            </div>
+
+
+
     </div>
 
     <div class="col-md-1"></div>
