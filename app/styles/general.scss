@@ -24,19 +24,16 @@ body {
 }
 
 .pub-date {
-  font-size:.8em;
-  font-weight:bold;
+  font-size: .8em;
+  font-weight: bold;
 }
 
 .post-body {
   padding: 15px;
 }
 
-.site-post img:first-of-type {
+.post-body img {
   max-width: 40%;
-  float: left;
-  margin-right: 25px;
-  margin-bottom: 10px;
 }
 
 .actions {

@@ -31,6 +31,7 @@
     <div class="col-md-8">
         <div infinite-scroll='postsPagination.get()' infinite-scroll-disabled='postsPagination.isLoading'
              infinite-scroll-distance='1'>
+
             <div nova-sticky offset="75"
                  ng-repeat="(itemIndex, item) in postsPagination.items | filtersByFeeds:selectedFeeds"
                  class="well infobox site-post" itemid="{{item.id}}">
@@ -45,8 +46,8 @@
 
                     <p ng-bind-html="item.content"></p>
                 </div>
-
             </div>
+
         </div>
         <div class="spinner" ng-show="postsPagination.isLoading && postsPagination.hasNext">
             <img src="images/spinner.gif"/>
