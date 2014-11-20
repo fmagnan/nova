@@ -64,32 +64,47 @@ angular.module('nova').controller('NovaController', function ($scope, $http, set
         restrict: 'A',
         scope: {},
         link: function (scope, element, attrs) {
-            var $window = angular.element(window);
+            var $window = angular.element(window),
+                debug = false;
 
-            var body = document.getElementsByTagName('body')[0];
-            var canvas = document.createElement('div');
-            canvas.setAttribute('class', 'canvas');
-            canvas.setAttribute('id', 'canvas-' + attrs.itemid);
-            canvas.innerHTML = '&nbsp;';
-            canvas.style.top = "125px";
-            canvas.style.left = "0px";
-            body.appendChild(canvas);
+            var addHorizontalLine = function (place) {
+                var body = document.getElementsByTagName('body')[0];
+                var line = document.createElement('div');
+                line.setAttribute('class', 'canvas');
+                line.setAttribute('id', place + '-canvas-' + attrs.itemid);
+                line.innerHTML = '&nbsp;';
+                line.style.top = '125px';
+                line.style.left = '0px';
+                line.style.background = 'red';
+                line.style.padding = '0px';
+                line.style.margin = '0px';
+                line.style.width = '100%';
+                line.style.height = '1px';
+                line.style.position = 'absolute';
+                body.appendChild(line);
+                return line;
+            };
+
+            if (debug) {
+                var topLine = addHorizontalLine('top');
+                var bottomLine = addHorizontalLine('bottom');
+            }
 
             var move = function (widget, position) {
                 widget.css({top: position});
                 scope.$apply();
             };
 
-            var isPostOverflowOnTopAndBottom = function (absolutePosition, scrollTop, postBottom, scrollBottom) {
-                return absolutePosition < scrollTop && postBottom > scrollBottom;
+            var isPostOverflowOnTopAndBottom = function (postTop, scrollTop, postBottom, scrollBottom) {
+                return postTop < scrollTop && postBottom > scrollBottom;
             };
 
-            var isPostOverflowOnlyOnTop = function (absolutePosition, scrollTop, futurePosition, absoluteHeight, offset) {
-                return absolutePosition < scrollTop && futurePosition < (absoluteHeight - offset);
+            var isPostOverflowOnlyOnTop = function (postTop, scrollTop, futurePosition, absoluteHeight, offset, widgetHeight) {
+                return postTop < scrollTop && futurePosition < (absoluteHeight - offset - widgetHeight);
             };
 
-            var isPostOverflowOnlyOnBottom = function (postBottom, scrollBottom, futurePosition, absolutePosition, offset) {
-                return postBottom > scrollBottom && futurePosition > (absolutePosition + offset);
+            var isPostOverflowOnlyOnBottom = function (postBottom, scrollBottom, futurePosition, postTop, offset, widgetHeight) {
+                return postBottom > scrollBottom && futurePosition > (postTop + offset + widgetHeight);
             };
 
             var foobar = function () {
@@ -99,21 +114,27 @@ angular.module('nova').controller('NovaController', function ($scope, $http, set
                 var bodyRect = document.body.getBoundingClientRect(),
                     post = element[0],
                     postRect = post.getBoundingClientRect(),
-                    absolutePosition = postRect.top - bodyRect.top,
+                    postTop = postRect.top - bodyRect.top,
                     absoluteHeight = postRect.height,
                     widget = element.find('.actions'),
                     scrollTop = this.scrollY,
                     scrollBottom = scrollTop + this.innerHeight,
-                    postBottom = absolutePosition + absoluteHeight,
-                    futurePosition = scrollTop - absolutePosition + offset;
+                    postBottom = postTop + absoluteHeight,
+                    futurePosition = scrollTop - postTop + offset,
+                    widgetHeight = widget.height();
 
-                var itemid = post.attributes.getNamedItem('itemid').value;
-                var boundCanvas = document.getElementById('canvas-' + itemid);
-                boundCanvas.style.top = absolutePosition + "px";
+                if (debug) {
+                    var itemid = post.attributes.getNamedItem('itemid').value;
+                    var topBoundCanvas = document.getElementById('top-canvas-' + itemid);
+                    topBoundCanvas.style.top = postTop + "px";
 
-                if (isPostOverflowOnTopAndBottom(absolutePosition, scrollTop, postBottom, scrollBottom) ||
-                    isPostOverflowOnlyOnTop(absolutePosition, scrollTop, futurePosition, absoluteHeight, offset) ||
-                    isPostOverflowOnlyOnBottom(postBottom, scrollBottom, futurePosition, absolutePosition, offset)) {
+                    var bottomBoundCanvas = document.getElementById('bottom-canvas-' + itemid);
+                    bottomBoundCanvas.style.top = postBottom + "px";
+                }
+
+                if (isPostOverflowOnTopAndBottom(postTop, scrollTop, postBottom, scrollBottom) ||
+                    isPostOverflowOnlyOnTop(postTop, scrollTop, futurePosition, absoluteHeight, offset, widgetHeight) ||
+                    isPostOverflowOnlyOnBottom(postBottom, scrollBottom, futurePosition, postTop, offset, widgetHeight)) {
                     move(widget, futurePosition);
                 }
             };
