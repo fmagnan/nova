@@ -9,14 +9,15 @@ angular.module('nova', [
     'ngRoute',
     'ngSanitize',
     'ngTouch',
-    'LocalStorageModule'
+    'LocalStorageModule',
+    'ngDialog'
 ]);
 
 angular.module('nova').config(['localStorageServiceProvider', function (localStorageServiceProvider) {
     localStorageServiceProvider.setPrefix('ls');
 }]);
 
-angular.module('nova').controller('NovaController', function ($scope, $http, settings, localStorageService) {
+angular.module('nova').controller('NovaController', function ($scope, $http, settings, localStorageService, ngDialog) {
     $scope.settings = settings;
 
     $scope.buildFeeds = function (response) {
@@ -57,6 +58,10 @@ angular.module('nova').controller('NovaController', function ($scope, $http, set
     } else {
         $http.get(settings.apiEndPoint + 'feeds').success($scope.resetFiltersOnFeeds);
     }
+
+/*    $scope.clickToOpen = function () {
+        ngDialog.open({template: "partials/addFeed.html"});
+    };*/
 
 }).directive('novaSticky', ['$window', function ($window) {
 

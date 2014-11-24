@@ -1,4 +1,4 @@
-<div class="social-widgets well infobox">
+<div class="tools well infobox">
     <div class="twitter-widget">
         <a href="https://twitter.com/share" class="twitter-share-button"
            data-url="{{settings.twitter.url}}"
@@ -18,5 +18,8 @@
     </div>
     <div class="rss">
         <a href="{{settings.apiEndPoint}}rss"><i class="fa fa-rss-square fa-3x"></i></a>
+    </div>
+    <div>
+        <a ng-dialog="partials/forms/add-feed.html">proposer une nouvelle source de flux</a>
     </div>
 </div>

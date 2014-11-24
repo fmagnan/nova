@@ -1,7 +1,7 @@
 <div class="row">
     <div class="col-md-1"></div>
     <div class="col-md-2 hidden-xs">
-        <div ng-include="'partials/social-widgets.html'"></div>
+        <div ng-include="'partials/tools.html'"></div>
         <div ng-if="settings.isAdsenseEnabled" ng-include="'partials/adsense.html'"></div>
         <div ng-include="'partials/feed-sources.html'"></div>
         <div ng-include="'partials/credits.html'"></div>
@@ -18,7 +18,7 @@
                 <div class="post-body">
                     <div ng-include="'partials/actions.html'"></div>
 
-                    <span class="badge badge-feed">{{item.pubDate}}</span>
+                    <span class="badge badge-feed">{{ item.pubDate | date:'dd-MMMM-yyyy'}}</span>
                     <span class="badge badge-feed">{{item.feedName}}</span>
 
                     <h3>{{item.title}}</h3>
