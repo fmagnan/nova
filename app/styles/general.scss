@@ -23,6 +23,15 @@ body {
   position: relative;
 }
 
+.feed-sources ul, .feed-sources li {
+  padding:0;
+  margin:0;
+}
+
+.feed-sources ul {
+  list-style-type: none;
+}
+
 .pub-date {
   font-size: .8em;
   font-weight: bold;
