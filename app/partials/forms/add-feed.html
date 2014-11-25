@@ -1,1 +1,13 @@
-oups!!
+<form>
+    <fieldset>
+        <legend>Proposer un nouveau flux</legend>
+        <p>
+            <input type="text" placeholder="Adresse du flux (atom, rss ...)" ng-model="addFeed.url"/>
+
+        <div>ex: http://www.afup.org/pages/site/rss.php</div>
+        </p>
+        <p>
+            <button ng-click="addFeed.submit();">Valider</button>
+        </p>
+    </fieldset>
+</form>

@@ -20,8 +20,24 @@ angular.module('nova').config(['localStorageServiceProvider', function (localSto
 angular.module('nova').controller('NovaController', function ($scope, $http, settings, localStorageService, ngDialog) {
     $scope.settings = settings;
 
+    $scope.openAddFeedPopin = function () {
+        ngDialog.open({ template: 'partials/forms/add-feed.html', controller: 'NovaController' });
+    };
+
+    $scope.addFeed = {};
+    $scope.addFeed.url = '';
+    $scope.addFeed.submit = function() {
+        console.log($scope.addFeed);
+    };
+
     $scope.buildFeeds = function (response) {
         $scope.feeds = response.data;
+    };
+
+    $scope.baseUri = function (fullUrl) {
+        var parser = document.createElement('a');
+        parser.href = fullUrl;
+        return parser.protocol + '//' + parser.hostname;
     };
 
     $scope.resetFiltersOnFeeds = function (response) {
@@ -58,10 +74,6 @@ angular.module('nova').controller('NovaController', function ($scope, $http, set
     } else {
         $http.get(settings.apiEndPoint + 'feeds').success($scope.resetFiltersOnFeeds);
     }
-
-/*    $scope.clickToOpen = function () {
-        ngDialog.open({template: "partials/addFeed.html"});
-    };*/
 
 }).directive('novaSticky', ['$window', function ($window) {
 
@@ -131,10 +143,10 @@ angular.module('nova').controller('NovaController', function ($scope, $http, set
                 if (debug) {
                     var itemid = post.attributes.getNamedItem('itemid').value;
                     var topBoundCanvas = document.getElementById('top-canvas-' + itemid);
-                    topBoundCanvas.style.top = postTop + "px";
+                    topBoundCanvas.style.top = postTop + 'px';
 
                     var bottomBoundCanvas = document.getElementById('bottom-canvas-' + itemid);
-                    bottomBoundCanvas.style.top = postBottom + "px";
+                    bottomBoundCanvas.style.top = postBottom + 'px';
                 }
 
                 if (isPostOverflowOnTopAndBottom(postTop, scrollTop, postBottom, scrollBottom) ||
