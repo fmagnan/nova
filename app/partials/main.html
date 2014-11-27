@@ -18,7 +18,8 @@
                 <div class="post-body">
                     <div ng-include="'partials/actions.html'"></div>
 
-                    <span class="badge badge-feed">{{ item.pubDate | date:'dd-MMMM-yyyy'}}</span>
+                    <span class="badge badge-feed">{{item.id}}</span>
+                    <span class="badge badge-feed">{{item.pubDate | date:'dd-MMMM-yyyy'}}</span>
                     <span class="badge badge-feed">{{item.feedName}}</span>
 
                     <h3>{{item.title}}</h3>

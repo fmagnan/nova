@@ -8,5 +8,6 @@
     },
     "apiEndPoint": "http://api.planetphp.gamelab.fr/",
     "remotePath": "/var/www/planetphp.gamelab.fr",
-    "siteUrl": "http://planetphp.gamelab.fr/"
+    "siteUrl": "http://planetphp.gamelab.fr/",
+    "code": "php"
 }

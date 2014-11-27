@@ -21,12 +21,12 @@ angular.module('nova').controller('NovaController', function ($scope, $http, set
     $scope.settings = settings;
 
     $scope.openAddFeedPopin = function () {
-        ngDialog.open({ template: 'partials/forms/add-feed.html', controller: 'NovaController' });
+        ngDialog.open({template: 'partials/forms/add-feed.html', controller: 'NovaController'});
     };
 
     $scope.addFeed = {};
     $scope.addFeed.url = '';
-    $scope.addFeed.submit = function() {
+    $scope.addFeed.submit = function () {
         console.log($scope.addFeed);
     };
 
@@ -68,11 +68,12 @@ angular.module('nova').controller('NovaController', function ($scope, $http, set
     }, true);
 
     var selectedFeedsInStore = localStorageService.get('selectedFeeds');
+    var feedsApiEndPoint = settings.apiEndPoint + 'feeds?code=' + settings.code;
     if (selectedFeedsInStore) {
         $scope.selectedFeeds = selectedFeedsInStore;
-        $http.get(settings.apiEndPoint + 'feeds').success($scope.buildFeeds);
+        $http.get(feedsApiEndPoint).success($scope.buildFeeds);
     } else {
-        $http.get(settings.apiEndPoint + 'feeds').success($scope.resetFiltersOnFeeds);
+        $http.get(feedsApiEndPoint).success($scope.resetFiltersOnFeeds);
     }
 
 }).directive('novaSticky', ['$window', function ($window) {

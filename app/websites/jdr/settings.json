@@ -8,5 +8,6 @@
     },
     "apiEndPoint": "http://api.planet.jeuxderoles.net/",
     "remotePath": "/var/www/planet.jeuxderoles.net",
-    "siteUrl": "http://planet.jeuxderoles.net/"
+    "siteUrl": "http://planet.jeuxderoles.net/",
+    "code": "jdr"
 }
